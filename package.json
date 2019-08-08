@@ -11,10 +11,20 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@hapi/joi": "^15.1.0",
     "axios": "^0.18.0",
     "babel-loader": "^7.1.5",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "element-ui": "^2.4.6",
     "js-cookie": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.12.3",
+    "serve-static": "^1.14.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
