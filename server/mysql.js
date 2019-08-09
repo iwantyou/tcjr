@@ -1,16 +1,15 @@
 var Sequelize = require('sequelize')
-var sequelize = new Sequelize('test', 'root', 'du118783', {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: 3030,
+if (!process.env.MYSQL_URL) {
+  console.log('应用开始之前，请配置MYSQL_URL')
+}
+var sequelize = new Sequelize(process.env.MYSQL_URL, {
   pool: {
     max: 10,
     min: 0
   },
+  define: {
+    freezeTableName: true
+  },
   timezone: '+ 08:00'
 })
-var User = sequelize.define('user', {
-  id: {
-    type: Sequelize.INTEGER
-  }
-})
+module.exports = sequelize
