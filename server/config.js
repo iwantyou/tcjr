@@ -1,4 +1,4 @@
-module.exports= {
+module.exports = {
   mimetype: ['png', 'jpg', 'jpeg'],
-  size: 10 * 1024 *1024
+  size: 10 * 1024 * 1024
 }

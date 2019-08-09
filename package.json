@@ -16,6 +16,7 @@
     "babel-loader": "^7.1.5",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "element-ui": "^2.4.6",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
