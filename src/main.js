@@ -10,6 +10,11 @@ import './assets/css/element.defa.css'
 import './assets/iconfont/iconfont.css'
 Vue.config.productionTip = false
 
+import { Message } from "element-ui";
+// 由于element-ui没有提供install方法
+Vue.use(Message);
+Vue.prototype.$message = Message;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

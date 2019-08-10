@@ -29,10 +29,6 @@
 <script>
 import Vue from "vue";
 import { login } from "@/axios/index";
-import { Message } from "element-ui";
-// 由于element-ui没有提供install方法
-Vue.use(Message);
-Vue.prototype.$message = Message;
 export default {
   name: "login",
   data() {

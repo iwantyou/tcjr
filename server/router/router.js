@@ -6,13 +6,14 @@ var upload = require('../upload')
 var rescode = require('../resultinfo')
 var RES_SUCCESS = require('../resultinfo')
 var RES_ERROR = require('../resultinfo')
+var creatToken = require('../middleware/creatToken')
 
 // 登录
 const login = async function (req, res) {
   const { username, password } = req.body
   const schema = Joi.object().keys({
-    username: Joi.string().required,
-    password: Joi.string().min(6).max(16).required
+    username: Joi.string().required(),
+    password: Joi.string().min(6).max(16).required()
   })
   const result = Joi.validate(req.body, schema)
   if (result.error) {
@@ -21,17 +22,19 @@ const login = async function (req, res) {
   }
   const admin = await db.User.findOne({ where: { username, password } }).then(res => ({
     res,
-    msg: true
+    msg: true,
+    token: creatToken(req.body, config.jwt_secret)
   })).catch(err => err)
-  if (admin.msg) res.json(RES_SUCCESS(admin.res))
+  if (admin.msg) res.json(RES_SUCCESS(admin))
+  res.end()
 }
 // 注册
 const register = async function (req, res) {
-  const { username, password, valicode } = req.body
+  const { username, password } = req.body
   const schema = Joi.object().keys({
-    username: Joi.string().required,
-    password: Joi.string().min(6).max(16).required,
-    valicode: Joi.string().min(4).max(4).required
+    username: Joi.string().required(),
+    password: Joi.string().min(6).max(16).required()
+    // repassword: Joi.string().min(4).max(4).required()
   })
   var result = Joi.validate(req.body, schema)
   if (result.error) { res.json({ code: 1, message: '失败' }) }
@@ -60,5 +63,5 @@ const uploadfile = async function (req, res) {
 }
 router.post('/v1/login', login)
 router.post('/v1/register', register)
-router.post('/v1/upload', upload.single('file'), uploadfile)
+router.post('/v2/upload', upload.single('file'), uploadfile)
 module.exports = { router }

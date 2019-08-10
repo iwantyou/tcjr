@@ -29,7 +29,7 @@ exports.RES_SUCCESS = function (data) {
 }
 exports.RES_ERROR = function (errcode, errdata) {
   var result = new Resff(errcode)
-  result.code = 1
+  result.code = errcode
   result.data = errdata
   var fail = result.initmessage()
   return fail
