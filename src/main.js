@@ -8,7 +8,10 @@ import './assets/css/base.css'
 import './assets/css/element.defa.css'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
+import {Button, Input} from 'element-ui'
 Vue.config.productionTip = false
+Vue.component(Button.name, Button)
+Vue.component(Input.name, Input)
 
 /* eslint-disable no-new */
 new Vue({

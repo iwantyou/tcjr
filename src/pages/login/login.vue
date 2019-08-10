@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <!-- <div class="login">
     <img src="../../assets/images/logo.png" />
     <div class="content">
       <div class="header">登录</div>
@@ -24,6 +24,33 @@
         <span class="signup">免费注册</span>
       </router-link>
     </div>
+  </div>-->
+  <div class="login">
+    <img src="../../assets/images/logo1.png" />
+    <div class="login_box">
+      <h1>登录</h1>
+      <div style="margin-top:30px">
+        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="name">
+          <i slot="prefix" class="el-input__icon el-icon-user-solid" style="font-size:18px"></i>
+        </el-input>
+      </div>
+      <div style="margin-top:30px">
+        <el-input placeholder="请输入密码" v-model="password" show-password>
+          <i slot="prefix" class="el-input__icon el-icon-unlock" style="font-size:18px"></i>
+        </el-input>
+      </div>
+      <div class="forget">
+        <a href>忘记密码？</a>
+      </div>
+      <el-button type="warning" class="login_btn">登录</el-button>
+    </div>
+    <div class="register">
+      <span>还没有账号?</span>
+      <router-link to="/register">
+        <span class="signup">免费注册</span>
+      </router-link>
+    </div>
+    <div class="footer"></div>
   </div>
 </template>
 <script>
@@ -37,7 +64,7 @@ export default {
   name: "login",
   data() {
     return {
-      address: null,
+      name: null,
       password: null,
       signin: true,
       desicion: true
@@ -89,150 +116,204 @@ export default {
   width: 100%;
   background-image: url(../../assets/images/backg.jpg);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   position: relative;
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  opacity: 0.7;
 
   img {
     display: block;
     position: absolute;
-    top: 20px;
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.5;
   }
 
-  .Lfooter {
+  .login_box {
+    width: 400px;
+    height: 400px;
     position: absolute;
-    bottom: 80px;
     left: 50%;
+    top: 160px;
     transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+    border-top: 10px solid #ff6000;
+    padding: 0 50px;
 
-    .signup {
-      display: inline-block;
-      padding-left: 5px;
-      color: orangered;
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      padding: 20px 0;
+      color: #ec4c48;
+      letter-spacing: 4px;
+    }
+    
+    .forget {
+      padding: 10px 5px;
+      text-align: right;
+      a {
+        font-size: 14px;
+        color: #3ca6fc;
+      }
+    }
+    .login_btn {
+      width: 100%;
+      margin-top: 50px;
+      background-color: #ff9500;
+      font-size: 20px;
     }
   }
 
-  .content {
+  .register {
     position: absolute;
+    bottom: 30px;
     left: 50%;
-    top: 80px;
     transform: translateX(-50%);
-    width: 300px;
-    height: 280px;
-    border-top: 5px solid orangered;
-    background: white;
 
-    .header {
-      color: orangered;
-      text-align: center;
-      margin: 20px 0;
-      font-size: 18px;
+    span {
+      font-size: 14px;
+      color: #999;
     }
-
-    .xiyi {
-      text-align: center;
-      font-size: 12px;
-      padding-top: 5px;
-    }
-
-    .common {
-      display: flex;
-      padding: 10px 20px 5px 20px;
-
-      .inputs {
-        flex: 1;
-        display: flex;
-        border: 1px solid #666;
-        border-radius: 3px;
-        padding: 5px 0;
-        color: #f6f6f6;
-        margin-right: 8px;
-
-        input {
-          flex: 1;
-          padding-left: 10px;
-          border: none;
-        }
-      }
-
-      .getcode {
-        background: #666;
-        padding: 5px 5px;
-        border-radius: 3px;
-      }
-    }
-
-    .inputm {
-      display: -webkit-flex;
-      display: flex;
-      margin: 20px 20px 0px 20px;
-      border: 1px solid #666;
-      border-radius: 3px;
-      padding: 5px 0;
-
-      .icon {
-        width: 20px;
-        height: 20px;
-        background: url(../../assets/images/mima.png);
-
-        background-size: 20px 20px;
-      }
-
-      .icon1 {
-        width: 20px;
-        height: 20px;
-        background: url(../../assets/images/zh.png);
-
-        background-size: 20px 20px;
-      }
-
-      input {
-        flex: auto;
-        color: #666;
-        padding-left: 15px;
-        line-height: 20px;
-        outline: none;
-      }
-    }
-
-    .forgetword {
-      color: blue;
-      position: relative;
-      font-size: 12px;
-
-      div {
-        position: absolute;
-        top: 3px;
-        right: 20px;
-      }
-    }
-
-    .loginbutton {
-      color: white;
-      background: orangered;
-      margin: 90px 20px 10px;
-      text-align: center;
-      line-height: 30px;
-      border-radius: 5px;
-    }
-    .signupbutton {
-      color: white;
-      background: orangered;
-      margin: 20px 20px 10px;
-      text-align: center;
-      line-height: 30px;
-      border-radius: 5px;
-    }
-    .yanzhengbutton {
-      color: white;
-      background: orangered;
-      margin: 80px 20px 10px;
-      text-align: center;
-      line-height: 30px;
-      border-radius: 5px;
+    .signup{
+      color: #ff9500;
     }
   }
+  // .Lfooter {
+  //   position: absolute;
+  //   bottom: 80px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+
+  //   .signup {
+  //     display: inline-block;
+  //     padding-left: 5px;
+  //     color: orangered;
+  //   }
+  // }
+
+  // .content {
+  //   position: absolute;
+  //   left: 50%;
+  //   top: 80px;
+  //   transform: translateX(-50%);
+  //   width: 300px;
+  //   height: 280px;
+  //   border-top: 5px solid orangered;
+  //   background: white;
+
+  //   .header {
+  //     color: orangered;
+  //     text-align: center;
+  //     margin: 20px 0;
+  //     font-size: 18px;
+  //   }
+
+  //   .xiyi {
+  //     text-align: center;
+  //     font-size: 12px;
+  //     padding-top: 5px;
+  //   }
+
+  //   .common {
+  //     display: flex;
+  //     padding: 10px 20px 5px 20px;
+
+  //     .inputs {
+  //       flex: 1;
+  //       display: flex;
+  //       border: 1px solid #666;
+  //       border-radius: 3px;
+  //       padding: 5px 0;
+  //       color: #f6f6f6;
+  //       margin-right: 8px;
+
+  //       input {
+  //         flex: 1;
+  //         padding-left: 10px;
+  //         border: none;
+  //       }
+  //     }
+
+  //     .getcode {
+  //       background: #666;
+  //       padding: 5px 5px;
+  //       border-radius: 3px;
+  //     }
+  //   }
+
+  //   .inputm {
+  //     display: -webkit-flex;
+  //     display: flex;
+  //     margin: 20px 20px 0px 20px;
+  //     border: 1px solid #666;
+  //     border-radius: 3px;
+  //     padding: 5px 0;
+
+  //     .icon {
+  //       width: 20px;
+  //       height: 20px;
+  //       background: url(../../assets/images/mima.png);
+
+  //       background-size: 20px 20px;
+  //     }
+
+  //     .icon1 {
+  //       width: 20px;
+  //       height: 20px;
+  //       background: url(../../assets/images/zh.png);
+
+  //       background-size: 20px 20px;
+  //     }
+
+  //     input {
+  //       flex: auto;
+  //       color: #666;
+  //       padding-left: 15px;
+  //       line-height: 20px;
+  //       outline: none;
+  //     }
+  //   }
+
+  //   .forgetword {
+  //     color: blue;
+  //     position: relative;
+  //     font-size: 12px;
+
+  //     div {
+  //       position: absolute;
+  //       top: 3px;
+  //       right: 20px;
+  //     }
+  //   }
+
+  //   .loginbutton {
+  //     color: white;
+  //     background: orangered;
+  //     margin: 90px 20px 10px;
+  //     text-align: center;
+  //     line-height: 30px;
+  //     border-radius: 5px;
+  //   }
+  //   .signupbutton {
+  //     color: white;
+  //     background: orangered;
+  //     margin: 20px 20px 10px;
+  //     text-align: center;
+  //     line-height: 30px;
+  //     border-radius: 5px;
+  //   }
+  //   .yanzhengbutton {
+  //     color: white;
+  //     background: orangered;
+  //     margin: 80px 20px 10px;
+  //     text-align: center;
+  //     line-height: 30px;
+  //     border-radius: 5px;
+  //   }
+  // }
 }
 </style>
