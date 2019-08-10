@@ -108,7 +108,7 @@ textarea{
 	resize: none;
 }
 input[type=text]{
-	border:none;
+	/* border:none; */
 	outline: none;
 }
 button, html input[type=button], input[type=submit] {
