@@ -1,6 +1,6 @@
 var router = require('express').Router()
 var Joi = require('@hapi/joi')
-var db = require('../db')
+var User = require('../db')
 var config = require('../config')
 var upload = require('../upload')
 var rescode = require('../resultinfo')
@@ -20,7 +20,7 @@ const login = async function (req, res) {
     res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
     res.end()
   }
-  const admin = await db.User.findOne({ where: { username, password } }).then(res => ({
+  const admin = await User.findOne({ where: { username, password } }).then(res => ({
     res,
     msg: true,
     token: creatToken(req.body, config.jwt_secret)
@@ -30,24 +30,26 @@ const login = async function (req, res) {
 }
 // 注册
 const register = async function (req, res) {
-  const { username, password } = req.body
+  const { name, password, repassword } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required()
-    // repassword: Joi.string().min(4).max(4).required()
+    password: Joi.string().min(6).max(16).required(),
+    repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
   if (result.error) { res.json({ code: 1, message: '失败' }) }
   {
-    const user = await db.User.create({ username, password }).then(res => ({
-      res,
-      code: true
-    })).catch(err => ({
-      err,
-      code: 1,
-      msg: '注册失败'
-    }))
-    if (user.code) res.json({ code: 0, msg: '注册成功' })
+    const user = await User.create({ name, password, repassword })
+    // .then(res => ({
+    //   res,
+    //   code: true
+    // })).catch(err => ({
+    //   err,
+    //   code: false,
+    //   msg: '注册失败'
+    // }))
+    console.log(JSON.stringify(user))
+    if (!user.err) res.json({ code: 0, msg: '注册成功' })
     else { res.json({ code: 1, msg: '注册失败' }) }
   }
   res.end()

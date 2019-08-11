@@ -8,15 +8,14 @@ import './assets/css/base.css'
 import './assets/css/element.defa.css'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
-import {Button, Input} from 'element-ui'
-Vue.config.productionTip = false
-Vue.component(Button.name, Button)
-Vue.component(Input.name, Input)
 
-import { Message } from "element-ui";
+import { Message } from 'element-ui'
+
+Vue.config.productionTip = false
+
 // 由于element-ui没有提供install方法
-Vue.use(Message);
-Vue.prototype.$message = Message;
+Vue.use(Message)
+Vue.prototype.$message = Message
 
 /* eslint-disable no-new */
 new Vue({

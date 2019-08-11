@@ -1,30 +1,4 @@
 <template>
-  <!-- <div class="login">
-    <img src="../../assets/images/logo.png" />
-    <div class="content">
-      <div class="header">登录</div>
-      <div class="yonghu inputm">
-        <div class="icon1"></div>
-        <input type="text" placeholder="请输入手机号码/邮箱/用户名" v-model="address" />
-      </div>
-      <div class="mima inputm">
-        <div class="icon"></div>
-        <input type="password" placeholder="请输入密码" v-model="password" />
-      </div>
-      <router-link to="/findpw">
-        <div class="forgetword">
-          <div>忘记密码？</div>
-        </div>
-      </router-link>
-      <div class="loginbutton" @click="login">登录</div>
-    </div>
-    <div class="Lfooter">
-      <span>还没有账号?</span>
-      <router-link to="/register">
-        <span class="signup">免费注册</span>
-      </router-link>
-    </div>
-  </div>-->
   <div class="login">
     <img src="../../assets/images/logo1.png" />
     <div class="login_box">
@@ -54,57 +28,49 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { login } from "@/axios/index";
+import Vue from 'vue'
+import { login } from '@x'
+import { Input, Button } from 'element-ui'
+Vue.use(Input)
+Vue.use(Button)
 export default {
-  name: "login",
-  data() {
+  name: 'login',
+  data () {
     return {
       name: null,
       password: null,
       signin: true,
       desicion: true
-    };
+    }
   },
   methods: {
-    signup() {
-      this.signin = !this.signin;
-    },
-    forgetword() {
-      this.desicion = false;
-      this.signin = false;
-    },
-    signup1() {
-      this.signin = true;
-      this.desicion = true;
-    },
-    login() {
+    login () {
       var loginform = {
-        user: this.address,
+        username: this.address,
         password: this.password
-      };
-      var that = this;
+      }
+      // var that = this
       login(loginform)
-        .then(function(res) {
+        .then(res => {
           if (res.code) {
-            that.$message({
-              message: "登录成功",
-              type: "success"
-            });
-            that.$store.state.login = true;
+            this.$message({
+              message: '登录成功',
+              type: 'success'
+            })
+            this.$store.state.login = true
           }
-          setTimeout(function() {
-            that.$router.push({ name: "home" });
-          }, 2000);
+          setTimeout(function () {
+            this.$router.push({ name: 'home' })
+          }, 2000)
         })
-        .catch(function(res) {
+        .catch(function (res) {
           this.$message({
-            message: "密码错误"
-          });
-        });
+            message: '密码错误'
+          })
+        })
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .login {
@@ -147,7 +113,7 @@ export default {
       color: #ec4c48;
       letter-spacing: 4px;
     }
-    
+
     .forget {
       padding: 10px 5px;
       text-align: right;

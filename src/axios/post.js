@@ -1,3 +1,4 @@
+import {ajax} from './index'
 /**
  * interface CpInfoParams {
  *    id : Number;

@@ -26,8 +26,8 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     //关闭未使用变量报错
-    'no-unused-vars': 0
+    'no-unused-vars': 0,
     //关闭行末分号提示报错
-    // 'semi':0
+    // 'semi': 0
   }
 }

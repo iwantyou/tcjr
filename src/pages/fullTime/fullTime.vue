@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bi" style="text-align: center;margin:20px 0;font-size:20px;letter-spacing:5px;">全职</div>
-    <!--/匪类导航-->
+    <!--分类导航-->
     <div class="nav" style="margin-left:25px;border-bottom:3px solid orangered">
       <div
         v-for="(item, index) in nav"
@@ -16,7 +16,7 @@
         :project="project"
         :key="index"
       ></full>
-    </div>
+    </div>+
     <div class="elbottom" style="text-align:center;padding:0 0 15px 0;">
       <el-pagination
         layout="total,sizes,prev, pager, next,jumper"
@@ -30,126 +30,45 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import full from "@/components/fullpartime/fulltime";
-import { Pagination } from "element-ui";
-import { getfulldata } from "@/axios/index";
-Vue.use(Pagination);
+import Vue from 'vue'
+import full from '@/components/fullpartime/fulltime'
+import { Pagination } from 'element-ui'
+import { getfulldata } from '@/axios/index'
+Vue.use(Pagination)
+
 export default {
-  name: "fullTime",
+  name: 'fullTime',
   components: {
     full
   },
-  data() {
+  data () {
     return {
       curt: 1,
       cur: 0,
-      nav: ["发布时间", "热度"],
-      /*
-      projects: [
-        {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }, {
-          name: '资深高级动画师',
-          detail: ['北京', '经验1-3年', '包吃', '包住', '五险', '一金'],
-          company: '年高管公司',
-          fee: '15k-30k',
-          time: '2018-01-02'
-        }
-      ], */
+      nav: ['发布时间', '热度'],
       projects1: []
-    };
+    }
   },
-  created() {
+  created () {
     getfulldata().then(res => {
       if (res.data.code) {
-        console.log(res.data.res);
+        console.log(res.data.res)
         for (var detail of res.data.res) {
-          detail.detail = detail.detail.split(",");
+          detail.detail = detail.detail.split(',')
         }
-        this.projects1 = res.data.res;
+        this.projects1 = res.data.res
       }
-    });
+    })
   },
   methods: {
-    c(index) {
-      this.cur = index;
+    c (index) {
+      this.cur = index
     },
-    handlecurrentchange(page) {
-      this.curt = page;
+    handlecurrentchange (page) {
+      this.curt = page
     }
   }
-};
+}
 </script>
 <style lang="scss">
 @import "index.scss";

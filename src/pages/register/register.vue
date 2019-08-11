@@ -1,43 +1,4 @@
 <template>
-  <!-- <div class="regiser">
-    <div class="logo">
-      <img class="logosec" src="../../assets/images/logo1.png" />
-    </div>
-    <div class="content1">
-      <div class="content">
-        <div class="header">注册账号</div>
-        <div class="common">
-          <div style="padding:5px 10px 5px 0">电子邮箱:</div>
-          <div class="youx inputs">
-            <input type="email" v-model="email" placeholder="请输入邮箱账号" />
-          </div>
-        </div>
-        <div class="common">
-          <div style="padding:5px 10px 5px 0">登录密码:</div>
-          <div class="dmima inputs">
-            <input type="password" v-model="password" placeholder="请输入密码" />
-          </div>
-        </div>
-        <div class="common">
-          <div style="padding:5px 10px 5px 0">确认密码:</div>
-          <div class="queren inputs">
-            <input type="password" v-model="repassword" placeholder="请确认密码" />
-          </div>
-        </div>
-        <div class="xieyi">
-          点击注册表示你同意
-          <span style="color:blue">《用户使用协议》</span>
-        </div>
-        <div class="signupbutton" @click="regiser">立即注册</div>
-      </div>
-    </div>
-    <div class="Lfooter">
-      <span>已有账号</span>
-      <router-link to="/login">
-        <span class="signup">立即登录</span>
-      </router-link>
-    </div>
-  </div>-->
   <div class="register">
     <img src="../../assets/images/logo1.png" />
     <div class="register_box">
@@ -58,7 +19,7 @@
         点击注册表示你同意
         <span style="color:blue">《用户使用协议》</span>
       </div>
-      <el-button type="warning" class="register_btn">立即注册</el-button>
+      <el-button type="warning" class="register_btn" @click="regiser">立即注册</el-button>
     </div>
     <div class="login">
       <span>已有账号</span>
@@ -69,46 +30,48 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { register } from "@/axios/index";
-import { Message } from "element-ui";
-// 由于element-ui没有提供install方法
-Vue.use(Message);
-Vue.prototype.$message = Message;
+import Vue from 'vue'
+import { register } from '@x'
+import {Input, Button} from 'element-ui'
+Vue.use(Input)
+Vue.use(Button)
 export default {
-  name: "register",
-  data() {
+  name: 'register',
+  data () {
     return {
-      email: "",
-      password: "",
-      repassword: ""
-    };
+      email: '',
+      password: '',
+      repassword: ''
+    }
   },
   methods: {
-    regiser() {
+    regiser () {
+      if (!this.email) return this.$message('email不能为空')
+      if (!this.password) return this.$message('密码不能为空')
+      if (!this.repassword) return this.$message('重复密码不能为空')
       var registerfrom = {
-        user: this.email,
+        name: this.email,
         password: this.password,
         repassword: this.repassword
-      };
-      var that = this;
-      register(registerfrom).then(function(res) {
-        if (res.code) {
+      }
+      var that = this
+      register(registerfrom).then(function (res) {
+        console.log(JSON.stringify(res))
+        if (res.data.code === 0) {
           that.$message({
-            message: res.message,
-            type: "success"
-          });
-          alert(res.message);
+            message: res.data.msg,
+            type: 'success'
+          })
           setTimeout(() => {
-            that.$router.push("/login");
-          }, 2000);
+            that.$router.push('/login')
+          }, 2000)
         } else {
-          alert(res.message);
+          alert(res.data.msg)
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .register {

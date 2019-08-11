@@ -1,13 +1,13 @@
 var Sequelize = require('sequelize')
 var sequelize = require('./mysql')
 var User = sequelize.define('user', {
-  id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    unique: true,
-    primaryKey: true,
-    autoIncrement: true
-  },
+  // id: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false,
+  //   unique: true,
+  //   primaryKey: true,
+  //   autoIncrement: true
+  // },
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -26,4 +26,4 @@ var User = sequelize.define('user', {
   }
 })
 User.sync([{ force: true }])
-module.export = User
+module.exports = User
