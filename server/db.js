@@ -23,7 +23,13 @@ var User = sequelize.define('user', {
   LV: {
     type: Sequelize.ENUM,
     values: ['lv1', 'lv2']
+  },
+  crate_time: {
+    type: Sequelize.DATE,
+    defaultvalue: new Date()
   }
+}, {
+  timestamps: false
 })
 User.sync([{ force: true }])
 module.exports = User

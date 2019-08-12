@@ -37,8 +37,7 @@ const register = async function (req, res) {
     repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
-  if (result.error) { res.json({ code: 1, message: '失败' }) }
-  {
+  if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }) } else {
     const user = await User.create({ name, password, repassword })
     // .then(res => ({
     //   res,
