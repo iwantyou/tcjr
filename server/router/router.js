@@ -38,18 +38,14 @@ const register = async function (req, res) {
   })
   var result = Joi.validate(req.body, schema)
   if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }) } else {
-    const user = await User.create({ name, password, repassword })
-    // .then(res => ({
-    //   res,
-    //   code: true
-    // })).catch(err => ({
-    //   err,
-    //   code: false,
-    //   msg: '注册失败'
-    // }))
-    console.log(JSON.stringify(user))
-    if (!user.err) res.json({ code: 0, msg: '注册成功' })
-    else { res.json({ code: 1, msg: '注册失败' }) }
+    try {
+      const user = await User.findOrCreate({ where: { name, password } })
+      console.log(JSON.stringify(user))
+      if (user[1]) res.json({ code: 0, msg: '注册成功' })
+      else { res.json({ code: 1, msg: '账号已被注册' }) }
+    } catch (err) {
+      console.log(err, '查询失败')
+    }
   }
   res.end()
 }

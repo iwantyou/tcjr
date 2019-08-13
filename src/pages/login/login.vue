@@ -4,12 +4,12 @@
     <div class="login_box">
       <h1>登录</h1>
       <div style="margin-top:30px">
-        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="name">
+        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="loginform.name">
           <i slot="prefix" class="el-input__icon el-icon-user-solid" style="font-size:18px"></i>
         </el-input>
       </div>
       <div style="margin-top:30px">
-        <el-input placeholder="请输入密码" v-model="password" show-password>
+        <el-input placeholder="请输入密码" v-model="loginform.password" show-password>
           <i slot="prefix" class="el-input__icon el-icon-unlock" style="font-size:18px"></i>
         </el-input>
       </div>
@@ -28,49 +28,44 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import { login } from '@x'
-import { Input, Button } from 'element-ui'
-Vue.use(Input)
-Vue.use(Button)
+import Vue from 'vue';
+import { login } from '@x';
+import { Input, Button } from 'element-ui';
+import jscookie from 'js-cookie';
+Vue.use(Input);
+Vue.use(Button);
 export default {
   name: 'login',
   data () {
     return {
-      name: null,
-      password: null,
-      signin: true,
-      desicion: true
-    }
+      loginform: {
+        name: null,
+        password: null
+      }
+    };
   },
   methods: {
     login () {
-      var loginform = {
-        username: this.address,
-        password: this.password
-      }
-      // var that = this
-      login(loginform)
+      if (!this.loginform.name) return this.$message('用户名不能为空');
+      if (!this.loginform.password) return this.$message('密码不能为空');
+      login(this.loginform)
         .then(res => {
-          if (res.code) {
-            this.$message({
-              message: '登录成功',
-              type: 'success'
-            })
-            this.$store.state.login = true
+          if (res.code === 0) {
+            this.$store.state.login = true;
+            const { token } = res.data;
+            jscookie.set('token', token);
+            let query = decodeURIComponent(this.$route.query.redirect || '/');
+            this.$router.push({ path: query });
+          } else {
+            this.$message(res.msg);
           }
-          setTimeout(function () {
-            this.$router.push({ name: 'home' })
-          }, 2000)
         })
-        .catch(function (res) {
-          this.$message({
-            message: '密码错误'
-          })
-        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .login {
@@ -140,7 +135,7 @@ export default {
       font-size: 14px;
       color: #999;
     }
-    .signup{
+    .signup {
       color: #ff9500;
     }
   }

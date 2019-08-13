@@ -34,7 +34,10 @@ const router = new Router({
         {
           path: 'community',
           name: 'community',
-          component: () => import('@/pages/community/community')
+          component: () => import('@/pages/community/community'),
+          meta: {
+            requiredauth: true
+          }
         },
         {
           path: 'login',
@@ -44,12 +47,18 @@ const router = new Router({
         {
           path: 'feedback',
           name: 'feedback',
-          component: () => import('@/pages/feedback/feedback')
+          component: () => import('@/pages/feedback/feedback'),
+          meta: {
+            requiredauth: true
+          }
         },
         {
           path: 'postdetail',
           name: 'postdetail',
-          component: () => import('@/pages/postdetail/postdetail')
+          component: () => import('@/pages/postdetail/postdetail'),
+          meta: {
+            requiredauth: true
+          }
         },
         {
           path: 'findpw',
@@ -64,25 +73,35 @@ const router = new Router({
         {
           path: 'createresume',
           name: 'createresume',
-          component: () => import('@/pages/createresume/createresume')
+          component: () => import('@/pages/createresume/createresume'),
+          meta: {
+            requiredauth: true
+          }
         },
         {
           path: 'selfcenter',
           name: 'selfcenter',
-          component: () => import('@/pages/selfcenter/selfcenter')
+          component: () => import('@/pages/selfcenter/selfcenter'),
+          meta: {
+            requiredauth: true
+          }
         },
         {
           path: 'about',
           name: 'about',
-          component: () => import('@/pages/about/about')
+          component: () => import('@/pages/about/about'),
+          meta: {
+            requiredauth: true
+          }
         }
       ]
     }
   ]
 })
 router.beforeEach((to, from, next) => {
-  console.log(to, from)
-  next()
+  if (to.meta.requiredauth) {
+    next({ name: 'login', path: '/login' })
+  } else { next() }
 })
 
 export default router

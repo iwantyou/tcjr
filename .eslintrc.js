@@ -28,6 +28,6 @@ module.exports = {
     //关闭未使用变量报错
     'no-unused-vars': 0,
     //关闭行末分号提示报错
-    // 'semi': 0
+     'semi': 0
   }
 }

@@ -24,10 +24,15 @@ var User = sequelize.define('user', {
     type: Sequelize.ENUM,
     values: ['lv1', 'lv2']
   },
-  crate_time: {
+  createdAt: {
     type: Sequelize.DATE,
-    defaultvalue: new Date()
+    defaultvalue: Date.now()
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    defaultvalue: Date.now()
   }
+
 }, {
   timestamps: false
 })

@@ -16,13 +16,13 @@
 </template>
 <script>
 export default {
-  name: "jobFair",
-  data() {
+  name: 'jobFair',
+  data () {
     return {
-      msg: "当前是招聘会页面"
-    };
+      msg: '当前是招聘会页面'
+    }
   }
-};
+}
 </script>
 <style scoped>
 .data {

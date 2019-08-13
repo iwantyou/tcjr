@@ -6,7 +6,8 @@ if (!process.env.MYSQL_URL) {
 var sequelize = new Sequelize(process.env.MYSQL_URL, {
   pool: {
     max: 10,
-    min: 0
+    min: 0,
+    maxIdleTime: 5000
   },
   define: {
     freezeTableName: true

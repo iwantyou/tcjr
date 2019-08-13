@@ -30,11 +30,11 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import { register } from '@x'
-import {Input, Button} from 'element-ui'
-Vue.use(Input)
-Vue.use(Button)
+import Vue from 'vue';
+import { register } from '@x';
+import { Input, Button } from 'element-ui';
+Vue.use(Input);
+Vue.use(Button);
 export default {
   name: 'register',
   data () {
@@ -42,36 +42,36 @@ export default {
       email: '',
       password: '',
       repassword: ''
-    }
+    };
   },
   methods: {
     regiser () {
-      if (!this.email) return this.$message('email不能为空')
-      if (!this.password) return this.$message('密码不能为空')
-      if (!this.repassword) return this.$message('重复密码不能为空')
+      if (!this.email) return this.$message('email不能为空');
+      if (!this.password) return this.$message('密码不能为空');
+      if (!this.repassword) return this.$message('重复密码不能为空');
       var registerfrom = {
         name: this.email,
         password: this.password,
         repassword: this.repassword
-      }
-      var that = this
+      };
+      var that = this;
       register(registerfrom).then(function (res) {
-        console.log(JSON.stringify(res))
+        console.log(JSON.stringify(res));
         if (res.data.code === 0) {
           that.$message({
             message: res.data.msg,
             type: 'success'
-          })
+          });
           setTimeout(() => {
-            that.$router.push('/login')
-          }, 2000)
+            that.$router.push('/login');
+          }, 2000);
         } else {
-          alert(res.data.msg)
+          alert(res.data.msg);
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .register {
@@ -152,75 +152,5 @@ export default {
       color: #ff9500;
     }
   }
-  // height: 500px;
-  // width: 100%;
-  // background: url(../../assets/images/backg.jpg);
-  // background-repeat: no-repeat;
-  // background-size: 100% 100%;
-
-  // .logo {
-  //   display: flex;
-  //   justify-content: center;
-  //   .logosec {
-  //     display: block;
-  //     margin-top: 20px;
-  //     opacity: 0.5;
-  //   }
-  // }
-  // .content1 {
-  //   display: flex;
-  //   justify-content: center;
-  //   margin-top: 10px;
-
-  //   .content {
-  //     width: 300px;
-  //     height: 280px;
-  //     border-top: 5px solid orangered;
-  //     background: white;
-  //     .header {
-  //       text-align: center;
-  //       color: orangered;
-  //       letter-spacing: 2px;
-  //       padding: 10px 0;
-  //       margin-bottom: 15px;
-  //     }
-  //     .common {
-  //       display: flex;
-  //       padding: 10px 20px 5px 20px;
-  //       color: #666;
-  //       .inputs {
-  //         flex: 1;
-  //         border: 1px solid #ccc;
-  //         border-radius: 3px;
-  //         padding: 5px 0;
-  //         color: #f6f6f6;
-  //         input {
-  //           padding-left: 10px;
-  //           outline: none;
-  //         }
-  //       }
-  //     }
-  //     .xieyi {
-  //       font-size: 12px;
-  //       text-align: center;
-  //       padding-top: 10px;
-  //     }
-  //     .signupbutton {
-  //       margin: 10px 20px 0;
-  //       padding: 5px 0;
-  //       text-align: center;
-  //       background: orangered;
-  //       color: white;
-  //       border-radius: 5px;
-  //     }
-  //   }
-  // }
-  // .Lfooter {
-  //   text-align: center;
-  //   margin-top: 80px;
-  //   .signup {
-  //     color: orangered;
-  //   }
-  // }
 }
 </style>
