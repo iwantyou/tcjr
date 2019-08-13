@@ -9,15 +9,15 @@
   </div>
 </template>
 <script>
-import holder from "@/components/header/header";
-import foot from "@/components/footer/footer";
+import holder from '@/components/header/header';
+import foot from '@/components/footer/footer';
 export default {
-  name: "layout",
+  name: 'layout',
   components: {
     holder,
     foot
   },
-  data() {
+  data () {
     return {};
   }
 };
@@ -30,8 +30,6 @@ export default {
   background-color: #f8fafc;
 }
 .layout {
-  min-height: calc(100% - 50px);
+  height: calc(100% - 350px);
 }
 </style>
-
-

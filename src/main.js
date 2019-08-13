@@ -9,13 +9,13 @@ import './assets/css/element.defa.css'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
 
-import { Message } from 'element-ui'
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
 
 // 由于element-ui没有提供install方法
-Vue.use(Message)
-Vue.prototype.$message = Message
+Vue.use(ElementUI)
+// Vue.prototype.$message = Message
 
 /* eslint-disable no-new */
 new Vue({

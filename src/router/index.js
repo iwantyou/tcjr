@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import layout from '@/pages/layout/layout'
+import jscookie from 'js-cookie'
 
 Vue.use(Router)
 
@@ -99,8 +100,16 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
+  let token = jscookie.get('token')
   if (to.meta.requiredauth) {
-    next({ name: 'login', path: '/login' })
+    if (token) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: to.fullPath
+      })
+    }
   } else { next() }
 })
 
