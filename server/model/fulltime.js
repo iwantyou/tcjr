@@ -72,4 +72,4 @@ for (let i = 0; i < fulltimedata.length; i++) {
     item_state: 0
   })
 }
-module.exports = Fulltime
+module.exports = { Fulltime }

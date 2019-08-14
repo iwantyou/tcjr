@@ -38,4 +38,4 @@ var User = sequelize.define('user', {
   timestamps: false
 })
 User.sync([{ force: true }])
-module.exports = User
+module.exports = { User }

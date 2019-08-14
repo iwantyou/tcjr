@@ -1,8 +1,8 @@
-var fulltimemodel = require('../model/fulltime')
+var db = require('../db')
 
 // 全职职位
 const fulltime = async function (req, res) {
-  let result = await fulltimemodel.findAll({
+  let result = await db.Fulltime.findAll({
     attributes: {
       exclude: ['item_id', 'item_privence', 'item_city', 'createdAt', 'updateAt']
     }
