@@ -2,15 +2,18 @@ var Sequelize = require('sequelize')
 var sequelize = require('../mysql')
 var utils = require('../utils')
 var User = sequelize.define('user', {
-  id: { type: Sequelize.INTEGER, allowNull: false, unique: true, primaryKey: true, defaultValue: utils.makeuid() },
-  name: { type: Sequelize.STRING, allowNull: false },
-  password: { type: Sequelize.STRING, allowNull: false },
-  mobile: { type: Sequelize.INTEGER, allowNull: true },
-  LV: { type: Sequelize.ENUM, values: ['lv1', 'lv2'] },
-  createdAt: { type: Sequelize.DATE, defaultvalue: Date.now() },
-  updatedAt: { type: Sequelize.DATE, defaultvalue: Date.now() }
+  id: { type: Sequelize.INTEGER, allowNull: false, unique: true, primaryKey: true, defaultValue: utils.makeuid() }, // 用户id
+  name: { type: Sequelize.STRING, allowNull: false }, // 用户昵称
+  password: { type: Sequelize.STRING, allowNull: false }, // 用户密码
+  mobile: { type: Sequelize.INTEGER, allowNull: true }, // 用户手机
+  LV: { type: Sequelize.ENUM, values: ['lv1', 'lv2'] }, // 用户级别
+  createdAt: { type: Sequelize.DATE, defaultvalue: Date.now() }, // 创建时间
+  updatedAt: { type: Sequelize.DATE, defaultvalue: Date.now() } // 更新时间
 },
-{ timestamps: false }
-)
-User.sync([{ force: true }])
-module.exports = { User }
+{ timestamps: false })
+User.sync([{
+  force: true
+}])
+module.exports = {
+  User
+}

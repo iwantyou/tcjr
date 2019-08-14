@@ -21,7 +21,7 @@ const login = async function (req, res) {
     res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
     res.end()
   }
-  const admin = await db.user.findOne({ where: { username, password } }).then(res => ({
+  const admin = await db.User.findOne({ where: { username, password } }).then(res => ({
     res,
     msg: true,
     token: creatToken(req.body, config.jwt_secret)
@@ -40,7 +40,7 @@ const register = async function (req, res) {
   var result = Joi.validate(req.body, schema)
   if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }) } else {
     try {
-      const user = await db.user.findOrCreate({ where: { name, password } })
+      const user = await db.User.findOrCreate({ where: { name, password } })
       console.log(JSON.stringify(user))
       if (user[1]) res.json({ code: 0, msg: '注册成功' })
       else { res.json({ code: 1, msg: '账号已被注册' }) }
