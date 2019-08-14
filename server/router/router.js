@@ -7,6 +7,7 @@ var rescode = require('../resultinfo')
 var RES_SUCCESS = require('../resultinfo')
 var RES_ERROR = require('../resultinfo')
 var creatToken = require('../middleware/creatToken')
+var fulltime = require('./fulltime')
 
 // 登录
 const login = async function (req, res) {
@@ -49,7 +50,6 @@ const register = async function (req, res) {
   }
   res.end()
 }
-
 // 上传图片
 const uploadfile = async function (req, res) {
   const { fieldname, originalname, mimetype, destination, size } = req.file
@@ -61,4 +61,5 @@ const uploadfile = async function (req, res) {
 router.post('/v1/login', login)
 router.post('/v1/register', register)
 router.post('/v2/upload', upload.single('file'), uploadfile)
+router.post('/v2/getfulldata', fulltime)
 module.exports = { router }

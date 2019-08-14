@@ -1,13 +1,14 @@
 var Sequelize = require('sequelize')
-var sequelize = require('./mysql')
+var sequelize = require('../mysql')
+var utils = require('../utils')
 var User = sequelize.define('user', {
-  // id: {
-  //   type: Sequelize.INTEGER,
-  //   allowNull: false,
-  //   unique: true,
-  //   primaryKey: true,
-  //   autoIncrement: true
-  // },
+  id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+    defaultValue: utils.makeuid()
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false
