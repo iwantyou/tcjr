@@ -10,7 +10,8 @@ var sequelize = new Sequelize(process.env.MYSQL_URL, {
     maxIdleTime: 5000
   },
   define: {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
   },
   timezone: '+08:00'
 })

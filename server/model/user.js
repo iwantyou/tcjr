@@ -8,9 +8,17 @@ var User = sequelize.define('user', {
   mobile: { type: Sequelize.INTEGER, allowNull: true }, // 用户手机
   LV: { type: Sequelize.ENUM, values: ['lv1', 'lv2'] }, // 用户级别
   createdAt: { type: Sequelize.DATE, defaultvalue: Date.now() }, // 创建时间
-  updatedAt: { type: Sequelize.DATE, defaultvalue: Date.now() } // 更新时间
+  updatedAt: { type: Sequelize.DATE, defaultvalue: Date.now() }, // 更新时间
+  resume_id: { type: Sequelize.STRING, allowNull: false } // 关联简历主键
+
 },
-{ timestamps: false })
+{
+  timestamps: false,
+  tableName: 'user'
+})
+User.hasOne('Resume', {
+  foreignKey: 'user_id'
+})
 User.sync([{
   force: true
 }])

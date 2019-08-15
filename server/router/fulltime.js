@@ -1,4 +1,6 @@
 var db = require('../db')
+var Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 // 全职职位
 const fulltime = async function (req, res) {

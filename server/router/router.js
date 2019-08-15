@@ -38,17 +38,16 @@ const register = async function (req, res) {
     repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
-  if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }) } else {
+  if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }); res.end() } else {
     try {
       const user = await db.User.findOrCreate({ where: { name, password } })
       console.log(JSON.stringify(user))
-      if (user[1]) res.json({ code: 0, msg: '注册成功' })
-      else { res.json({ code: 1, msg: '账号已被注册' }) }
+      if (user[1]) { res.json({ code: 0, msg: '注册成功' }); res.end() } else { res.json({ code: 1, msg: '账号已被注册' }); res.end() }
     } catch (err) {
       console.log(err, '查询失败')
+      res.end()
     }
   }
-  res.end()
 }
 // 上传图片
 const uploadfile = async function (req, res) {
