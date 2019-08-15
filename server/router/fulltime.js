@@ -1,20 +1,26 @@
 var db = require('../db')
 var Sequelize = require('sequelize')
+var rescode = require('../resultinfo')
+var RES_SUCCESS = require('../resultinfo')
+var RES_ERROR = require('../resultinfo')
+
 const Op = Sequelize.Op
 
 // 全职职位
 const fulltime = async function (req, res) {
   let result = await db.Fulltime.findAll({
     attributes: {
-      exclude: ['item_id', 'item_privence', 'item_city', 'createdAt', 'updateAt']
-    }
+      exclude: ['createdAt', 'updateAt']
+    },
+    raw: true
   })
   if (result.error) {
-    res.json({ code: 1, msg: '请求失败' });
+    res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
     res.end()
   } else {
-    res.json({ result, code: 0, msg: '成功' })
+    res.json(RES_SUCCESS(result))
     res.end()
   }
 }
+
 module.exports = fulltime

@@ -17,7 +17,7 @@ function Resff (rescode) {
 }
 
 Resff.prototype.initmessage = function () {
-  this.msg = errmessage[this.rescode || 0]
+  this.msg = errmessage[this.rescode] || '成功'
   return this
 }
 exports.RES_SUCCESS = function (data) {

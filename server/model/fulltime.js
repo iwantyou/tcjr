@@ -17,9 +17,12 @@ var Fulltime = db.define('fulltime', {
   item_name: { type: Sequelize.STRING, allowNull: false }, // 公司名称
   item_city: { type: Sequelize.STRING, allowNull: false }, // 公司所在城市
   item_cover: { type: Sequelize.STRING, allowNull: false }, // 发布人
-  item_charge: { type: Sequelize.STRING, allowNull: false } // 发布人职位
+  item_charge: { type: Sequelize.STRING, allowNull: false }, // 发布人职位
+  item_position_state: {
+    type: Sequelize.BOOLEAN, allowNull: false, get () { return this.getDataValue('item_position_state') ? '全职' : '兼职' }
+  }// 0 全职 1 兼职
 })
-Fulltime.sync([{ force: true }])
+Sequelize.sync([{ force: true }])
 for (let i = 0; i < fulltimedata.length; i++) {
   Fulltime.create({
     ...fulltimedata[1],

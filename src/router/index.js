@@ -54,7 +54,7 @@ const router = new Router({
           }
         },
         {
-          path: 'postdetail',
+          path: 'postdetail/:id',
           name: 'postdetail',
           component: () => import('@/pages/postdetail/postdetail'),
           meta: {

@@ -19,9 +19,6 @@ var User = sequelize.define('user', {
 User.hasOne('Resume', {
   foreignKey: 'user_id'
 })
-User.sync([{
-  force: true
-}])
 module.exports = {
   User
 }

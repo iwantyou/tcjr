@@ -43,46 +43,47 @@
 </template>
 <script>
 export default {
-  name: "postDetail",
-  data() {
+  name: 'postDetail',
+  data () {
     return {
+      detail_id: this.$router.params.id,
       activitydata: [
         {
-          imgurl: "../../assets/images/backg.png",
-          title: "标题1",
-          des: "这是介绍项目的描述",
-          starttime: "2019-08-01",
-          endtime: "2019-09-01",
+          imgurl: '../../assets/images/backg.png',
+          title: '标题1',
+          des: '这是介绍项目的描述',
+          starttime: '2019-08-01',
+          endtime: '2019-09-01',
           state: 0, // 0代表未发布   1代表已发布
           joinmount: 100,
           vote: 100
         },
         {
-          imgurl: "../../assets/images/backg.png",
-          title: "标题2",
-          des: "这是介绍项目的描述",
-          starttime: "2019-08-01",
-          endtime: "2019-09-01",
+          imgurl: '../../assets/images/backg.png',
+          title: '标题2',
+          des: '这是介绍项目的描述',
+          starttime: '2019-08-01',
+          endtime: '2019-09-01',
           state: 1, // 0代表未发布   1代表已发布
           joinmount: 100,
           vote: 100
         },
         {
-          imgurl: "../../assets/images/backg.png",
-          title: "标题3",
-          des: "这是介绍项目的描述",
-          starttime: "2019-08-01",
-          endtime: "2019-09-01",
+          imgurl: '../../assets/images/backg.png',
+          title: '标题3',
+          des: '这是介绍项目的描述',
+          starttime: '2019-08-01',
+          endtime: '2019-09-01',
           state: 0, // 0代表未发布   1代表已发布
           joinmount: 100,
           vote: 100
         },
         {
-          imgurl: "../../assets/images/backg.png",
-          title: "标题4",
-          des: "这是介绍项目的描述这是介绍项目的描述这是介绍项目的描述",
-          starttime: "2019-08-01",
-          endtime: "2019-09-01",
+          imgurl: '../../assets/images/backg.png',
+          title: '标题4',
+          des: '这是介绍项目的描述这是介绍项目的描述这是介绍项目的描述',
+          starttime: '2019-08-01',
+          endtime: '2019-09-01',
           state: 0, // 0代表未发布   1代表已发布
           joinmount: 100,
           vote: 100
