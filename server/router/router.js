@@ -18,31 +18,34 @@ const login = async function (req, res) {
   })
   const result = Joi.validate(req.body, schema)
   if (result.error) {
-    res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
+    res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
   }
-  const admin = await db.User.findOne({ where: { username, password } }).then(res => ({
-    res,
-    msg: true,
-    token: creatToken(req.body, config.jwt_secret)
-  })).catch(err => err)
-  if (admin.msg) res.json(RES_SUCCESS(admin))
-  res.end()
+  let admin = await db.User.findOne({ where: { username, password }, attributes: ['username', 'password'] })
+  console.log(admin)
+  let token = creatToken(req.body, config.jwt_secret)
+  if (admin.err) { res.json(RES_ERROR(rescode.ERROR_ACCOUNT)); res.end() } else {
+    res.json(RES_SUCCESS(token))
+    res.end()
+  }
 }
 // 注册
 const register = async function (req, res) {
-  const { name, password, repassword } = req.body
+  const { name, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required(),
-    repassword: Joi.string().min(6).max(16).required()
+    password: Joi.string().min(6).max(16).required()
+    // repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
-  if (result.error && password !== repassword) { res.json({ code: 1, message: '失败' }); res.end() } else {
+  if (result.error) {
+    res.json(RES_ERROR(rescode.ERROR_FORMAT))
+    res.end()
+  } else {
     try {
-      const user = await db.User.findOrCreate({ where: { name, password } })
+      var user = await db.User.findOrCreate({ where: { name, password } })
       console.log(JSON.stringify(user))
-      if (user[1]) { res.json({ code: 0, msg: '注册成功' }); res.end() } else { res.json({ code: 1, msg: '账号已被注册' }); res.end() }
+      if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR({})); res.end() }
     } catch (err) {
       console.log(err, '查询失败')
       res.end()

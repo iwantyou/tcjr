@@ -4,10 +4,10 @@
       <div class="findpw-header"></div>
       <h3 class="text-center" style="padding: 10px 0 20px 0 ">找回密码</h3>
       <el-form ref="findform" :rules="rules" :model="findform" label-width="70px">
-        <el-form-item label="手机号" props="phone">
+        <el-form-item label="手机号" prop="phone">
           <el-input v-model="findform.phone" placeholder="请输入手机号"></el-input>
         </el-form-item>
-        <el-form-item label="验证码" props="code">
+        <el-form-item label="验证码" prop="code">
           <el-input v-model="findform.code" placerholder="请输入验证码"></el-input>
         </el-form-item>
         <div class="text-center" style="padding-top:40px;">
@@ -21,17 +21,24 @@
 export default {
   name: 'findpw',
   data () {
+    var changdu = (rule, value, callback) => {
+      if (!/\d{11}/.test(value)) {
+        return callback(new Error('手机号长度必须11位数字'));
+      }
+    };
+    var changdu1 = (rule, value, callback) => {
+      if (!/\d{4}/.test(value)) {
+        return callback(new Error('验证码必须是4位'));
+      }
+    };
     return {
       findform: {
         phone: null,
         code: null
       },
       rules: {
-        phone: [
-          { required: true, message: '请输入手机号', trigger: 'blur' },
-          { length: 11, message: '手机号长度必须为11位', trigger: 'blur' }
-        ],
-        code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
+        phone: [{ validator: changdu, trigger: 'blur' }],
+        code: [{ validator: changdu1, trigger: 'blur' }]
       }
     };
   },
