@@ -10,6 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+function resolve (dir) {
+  return path.resolve(__dirname, '..', dir)
+}
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -53,9 +56,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      title: '求职网',
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      favicon: resolve('log.ico')
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
