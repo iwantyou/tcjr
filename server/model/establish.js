@@ -3,8 +3,8 @@ var sequelize = require('../mysql')
 
 var Resume = sequelize.define('resume', {
   user_id: { type: Sequelize.STRING, unique: true },
-  sex: { type: Sequelize.ENUM, values: ['男', '女'] }, // 性别
-  birthday: { type: Sequelize.STRING, allowNull: false }, // 生日
+  sex: { type: Sequelize.ENUM, values: ['男', '女'], defaultvalue: '男' }, // 性别
+  birthday: { type: Sequelize.STRING, allowNull: true }, // 生日
   deliver: { type: Sequelize.ARRAY, allowNull: true }, // 投递职位
   education: {
     type: Sequelize.INTEGER,
@@ -17,11 +17,12 @@ var Resume = sequelize.define('resume', {
     }
   }
 })
-Resume.belongsTo('User', {
-  foreignKey: 'user_id',
-  as: 'resume',
-  targetKey: 'resume_id'
-})
+// Resume.belongsTo('User', {
+//   foreignKey: 'user_id',
+//   as: 'resume',
+//   targetKey: 'resume_id'
+// })
+Resume.async()
 module.exports = {
   Resume
 }

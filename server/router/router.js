@@ -14,7 +14,7 @@ const login = async function (req, res) {
   const { username, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required()
+    password: Joi.string().alphanum().min(6).max(16).required()
   })
   const result = Joi.validate(req.body, schema)
   if (result.error) {
@@ -31,10 +31,11 @@ const login = async function (req, res) {
 }
 // 注册
 const register = async function (req, res) {
-  const { name, password } = req.body
+  const { name, password, mobile } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required()
+    password: Joi.string().min(6).max(16).required(),
+    mobile: Joi.number().length(11).required()
     // repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
@@ -43,7 +44,7 @@ const register = async function (req, res) {
     res.end()
   } else {
     try {
-      var user = await db.User.findOrCreate({ where: { name, password } })
+      var user = await db.User.findOrCreate({ where: { mobile }, defaults: { name, password } })
       console.log(JSON.stringify(user))
       if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR({})); res.end() }
     } catch (err) {

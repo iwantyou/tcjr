@@ -3,15 +3,13 @@ var Sequelize = require('sequelize')
 var rescode = require('../resultinfo')
 var RES_SUCCESS = require('../resultinfo')
 var RES_ERROR = require('../resultinfo')
-
+var fulldata = require('../data/fulltimedata')
 const Op = Sequelize.Op
 
 // 全职职位
 const fulltime = async function (req, res) {
+  await db.Fulltime.bulkCreate(fulldata)
   let result = await db.Fulltime.findAll({
-    attributes: {
-      exclude: ['createdAt', 'updateAt']
-    },
     raw: true
   })
   if (result.error) {

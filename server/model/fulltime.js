@@ -1,7 +1,5 @@
 var db = require('../mysql')
 var Sequelize = require('sequelize')
-var utils = require('../utils')
-var fulltimedata = require('../data/fulltimedata')
 /* eslint-disable no-new */
 var Fulltime = db.define('fulltime', {
   item_id: { type: Sequelize.INTEGER, primaryKey: true, allowNull: false, autoIncreament: true }, // 职位id
@@ -22,14 +20,15 @@ var Fulltime = db.define('fulltime', {
     type: Sequelize.BOOLEAN, allowNull: false, get () { return this.getDataValue('item_position_state') ? '全职' : '兼职' }
   }// 0 全职 1 兼职
 })
-Sequelize.sync([{ force: true }])
-for (let i = 0; i < fulltimedata.length; i++) {
-  Fulltime.create({
-    ...fulltimedata[1],
-    item_id: utils.makeuid(),
-    item_state: 0
-  })
-}
+Fulltime.sync([{ force: true }])
+// for (let i = 0; i < fulltimedata.length; i++) {
+//   Fulltime.create({
+//     ...fulltimedata[1],
+//     item_id: utils.makeuid(),
+//     item_state: 0
+//   })
+// }
+
 module.exports = {
   Fulltime
 }
