@@ -72,7 +72,7 @@ const router = new Router({
           component: () => import('@/pages/register/register')
         },
         {
-          path: 'createresume',
+          path: 'createresume/:resumid',
           name: 'createresume',
           component: () => import('@/pages/createresume/createresume'),
           meta: {

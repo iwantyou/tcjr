@@ -8,6 +8,8 @@ var RES_SUCCESS = require('../resultinfo')
 var RES_ERROR = require('../resultinfo')
 var creatToken = require('../middleware/creatToken')
 var fulltime = require('./fulltime')
+var creatresume = require('./resum')
+var utils = require('../utils')
 
 // 登录
 const login = async function (req, res) {
@@ -21,7 +23,7 @@ const login = async function (req, res) {
     res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
   }
-  let admin = await db.User.findOne({ where: { username, password }, attributes: ['username', 'password'] })
+  let admin = await db.User.findOne({ where: { username, password }, attributes: ['username', 'password'] }).then(res1 => res1.get({ plain: true }))
   console.log(admin)
   let token = creatToken(req.body, config.jwt_secret)
   if (admin.err) { res.json(RES_ERROR(rescode.ERROR_ACCOUNT)); res.end() } else {
@@ -44,7 +46,7 @@ const register = async function (req, res) {
     res.end()
   } else {
     try {
-      var user = await db.User.findOrCreate({ where: { mobile }, defaults: { name, password } })
+      var user = await db.User.findOrCreate({ where: { mobile }, defaults: { name, password, resum_id: utils.makeuid() } })
       console.log(JSON.stringify(user))
       if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR({})); res.end() }
     } catch (err) {
@@ -65,4 +67,5 @@ router.post('/v1/login', login)
 router.post('/v1/register', register)
 router.post('/v2/upload', upload.single('file'), uploadfile)
 router.post('/v2/getfulldata', fulltime)
+router.post('v2/creatresume', creatresume)
 module.exports = { router }
