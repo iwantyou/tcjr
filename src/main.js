@@ -9,8 +9,10 @@ import './assets/css/element.defa.css'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
 import moment from 'moment'
+import 'moment/locale/zh-cn'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+moment.locale('zh-cn');
 Vue.config.productionTip = false
 Vue.filter('dateformat', (value) => {
   return moment(value).format('yyyy-mm-dd')

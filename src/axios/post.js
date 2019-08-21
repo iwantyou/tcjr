@@ -1,4 +1,4 @@
-import {ajax} from './index'
+import { ajax } from './index'
 /**
  * interface CpInfoParams {
  *    id : Number;
@@ -29,3 +29,7 @@ export const register = (param) => ajax.post('/v1/register', param).then(res => 
  */
 // 登录
 export const login = (param) => ajax.post('/v1/login', param).then(res => res)
+
+// 职位排序
+
+export const getfullsort = (param) => ajax.post('/v2/fullsort', param).then(res => res)

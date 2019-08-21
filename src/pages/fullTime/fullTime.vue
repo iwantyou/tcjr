@@ -6,16 +6,12 @@
       <div
         v-for="(item, index) in nav"
         :key="index"
-        @click="c(index)"
+        @click="sort(index, item.type)"
         :class="['com',{'cur': index == cur}]"
-      >{{item}}</div>
+      >{{item.sort}}</div>
     </div>
     <div class="flex">
-      <full
-        v-for="(project, index) in projects1.slice((curt-1)*12,12*curt)"
-        :project="project"
-        :key="index"
-      ></full>
+      <full v-for="(project, index) in projects1" :project="project" :key="index"></full>
     </div>
     <div class="elbottom" style="text-align:center;padding:0 0 15px 0;">
       <el-pagination
@@ -34,7 +30,7 @@
 import Vue from "vue";
 import full from "@/components/fullpartime/fulltime";
 import { Pagination } from "element-ui";
-import { getfulldata } from "@/axios/index";
+import { getfulldata, getfullsort } from "@/axios/index";
 Vue.use(Pagination);
 
 export default {
@@ -45,7 +41,10 @@ export default {
   data() {
     return {
       cur: 0,
-      nav: ["发布时间", "热度"],
+      nav: [
+        { sort: "发布时间", type: "item_public_time" },
+        { sort: "热度", type: "hot" }
+      ],
       projects1: [],
       pagedata: {
         limit: 12,
@@ -57,23 +56,40 @@ export default {
     };
   },
   created() {
-    getfulldata(pagedata).then(res => {
-      if (res === 0) {
-        const { result, loadmore } = res.data;
-        this.projects1 = result.rows;
-        this.loadmore = loadmore;
-        this.totalpage = Math.ceil(result.count / this.pagedata.limit);
-      } else {
-        this.$message({
-          message: res.msg,
-          type: "warning"
-        });
-      }
-    });
+    this.getData();
   },
   methods: {
-    c(index) {
+    sort(index, sort) {
       this.cur = index;
+      var feather = sort.type;
+      getfullsort({ ...pagedata, feather }).then(res => {
+        if (res === 0) {
+          const { result, loadmore } = res.data;
+          this.projects1 = result.rows;
+          this.loadmore = loadmore;
+          this.totalpage = Math.ceil(result.count / this.pagedata.limit);
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "warning"
+          });
+        }
+      });
+    },
+    getData() {
+      getfulldata(pagedata).then(res => {
+        if (res === 0) {
+          const { result, loadmore } = res.data;
+          this.projects1 = result.rows;
+          this.loadmore = loadmore;
+          this.totalpage = Math.ceil(result.count / this.pagedata.limit);
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "warning"
+          });
+        }
+      });
     },
     handlecurrentchange(page) {
       this.pagedata.page = page;
