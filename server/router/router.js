@@ -67,5 +67,5 @@ router.post('/v1/login', login)
 router.post('/v1/register', register)
 router.post('/v2/upload', upload.single('file'), uploadfile)
 router.post('/v2/getfulldata', fulltime)
-router.post('v2/creatresume', creatresume)
+router.post('/v2/creatresume', creatresume)
 module.exports = { router }

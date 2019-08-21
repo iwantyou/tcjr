@@ -8,11 +8,13 @@ import './assets/css/base.css'
 import './assets/css/element.defa.css'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
-
+import moment from 'moment'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
-
+Vue.filter('dateformat', (value) => {
+  return moment(value).format('yyyy-mm-dd')
+})
 // 由于element-ui没有提供install方法
 Vue.use(ElementUI)
 // Vue.prototype.$message = Message

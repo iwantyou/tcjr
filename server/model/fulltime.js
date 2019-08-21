@@ -18,7 +18,7 @@ var Fulltime = db.define('fulltime', {
   item_charge: { type: Sequelize.STRING, allowNull: false }, // 发布人职位
   item_position_state: {
     type: Sequelize.BOOLEAN, allowNull: false, get () { return this.getDataValue('item_position_state') ? '全职' : '兼职' }
-  }// 0 全职 1 兼职
+  }// 1 全职 0 兼职
 })
 Fulltime.sync([{ force: true }])
 // for (let i = 0; i < fulltimedata.length; i++) {
