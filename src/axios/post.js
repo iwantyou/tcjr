@@ -33,3 +33,7 @@ export const login = (param) => ajax.post('/v1/login', param).then(res => res)
 // 职位排序
 
 export const getfullsort = (param) => ajax.post('/v2/fullsort', param).then(res => res)
+
+// 职位详情
+
+export const getdetail = (param) => ajax.post('/v2/positiondetail', param).then(res => res)

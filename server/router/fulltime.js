@@ -33,7 +33,7 @@ const fulltime = async function (req, res) {
   }
 }
 
-// 职位排序
+// 职位排序 热度 时间
 const fullsort = async function (res, req) {
   // eslint-disable-next-line camelcase
   const { limit, page, item_position_state, feather } = req.body
@@ -61,5 +61,14 @@ const fullsort = async function (res, req) {
     res.end()
   }
 }
-
-module.exports = { fulltime, fullsort }
+//  职位详情
+const postiondetail = async function (req, res) {
+  // eslint-disable-next-line camelcase
+  const { item_id } = req.body
+  var result = await db.Fulltime.findById({ item_id }).then(res1 => res1.get({ plain: true }))
+  if (result.error) { res.json(RES_ERROR(rescode.ERROR_FORMAT)); res.end() } else {
+    res.json(RES_SUCCESS(result));
+    res.end()
+  }
+}
+module.exports = { fulltime, fullsort, postiondetail }

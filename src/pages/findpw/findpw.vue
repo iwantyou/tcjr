@@ -19,16 +19,16 @@
 </template>
 <script>
 export default {
-  name: 'findpw',
-  data () {
+  name: "findpw",
+  data() {
     var changdu = (rule, value, callback) => {
       if (!/\d{11}/.test(value)) {
-        return callback(new Error('手机号长度必须11位数字'));
+        return callback(new Error("手机号长度必须11位数字"));
       }
     };
     var changdu1 = (rule, value, callback) => {
-      if (!/\d{4}/.test(value)) {
-        return callback(new Error('验证码必须是4位'));
+      if (!/[0-9a-zA-Z]{4}/.test(value)) {
+        return callback(new Error("验证码必须是4位"));
       }
     };
     return {
@@ -37,18 +37,18 @@ export default {
         code: null
       },
       rules: {
-        phone: [{ validator: changdu, trigger: 'blur' }],
-        code: [{ validator: changdu1, trigger: 'blur' }]
+        phone: [{ validator: changdu, trigger: "blur" }],
+        code: [{ validator: changdu1, trigger: "blur" }]
       }
     };
   },
   methods: {
-    findpw () {
+    findpw() {
       this.$refs.findform.validate(valid => {
         if (valid) {
-          this.$message('找回密码成功');
+          this.$message("找回密码成功");
         } else {
-          alert('错误');
+          alert("错误");
           return false;
         }
       });
