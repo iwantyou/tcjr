@@ -1,22 +1,32 @@
 <template>
   <div>
-    <div class="bi" style="text-align: center;margin:20px 0;font-size:20px;letter-spacing:5px;">全职</div>
+    <h2 class="text-center header">全职</h2>
     <!--分类导航-->
-    <div class="nav" style="margin-left:25px;border-bottom:3px solid orangered">
+    <div class="nav-content">
       <div
         v-for="(item, index) in nav"
         :key="index"
-        @click="sort(index, item.type)"
-        :class="['com',{'cur': index == cur}]"
+        @click="tab(index, item.type)"
+        :class="['nav',{'cur': index == cur}]"
       >{{item.sort}}</div>
     </div>
-    <div class="flex">
-      <full v-for="(project, index) in projects1" :project="project" :key="index"></full>
+    <!--内容区 -->
+    <div class="content">
+      <el-row>
+        <el-col :sm="8" :md="6" v-for="(item, index) in projects1" :key="index">
+          <div class="widge">
+            <div class="box">
+              <div>职位名称：</div>
+              <div>职位描述</div>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
     </div>
+    <!--分页 -->
     <div class="elbottom" style="text-align:center;padding:0 0 15px 0;">
       <el-pagination
         layout="total,sizes,prev, pager, next,jumper"
-        background="true"
         :total="totalpage"
         :current-page="pagedata.page"
         :page-sizes="[12]"
@@ -28,16 +38,13 @@
 </template>
 <script>
 import Vue from "vue";
-import full from "@/components/fullpartime/fulltime";
 import { Pagination } from "element-ui";
 import { getfulldata, getfullsort } from "@/axios/index";
 Vue.use(Pagination);
 
 export default {
   name: "fullTime",
-  components: {
-    full
-  },
+  components: {},
   data() {
     return {
       cur: 0,
@@ -45,7 +52,7 @@ export default {
         { sort: "发布时间", type: "item_public_time" },
         { sort: "热度", type: "hot" }
       ],
-      projects1: [],
+      projects1: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       pagedata: {
         limit: 12,
         page: 1,
@@ -59,6 +66,9 @@ export default {
     this.getData();
   },
   methods: {
+    tab(index, sort) {
+      this.cur = index;
+    },
     sort(index, sort) {
       this.cur = index;
       var feather = sort.type;
@@ -97,16 +107,39 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-@import "index.scss";
-@media (min-width: 1024px) {
-  .flex {
-    width: 33.33%;
-  }
+<style lang="less" scoped>
+@import "../../assets/css/mixin.less";
+.header {
+  .mar-tb(8px);
 }
-@media (max-width: 1023px) {
-  .flex {
-    width: 50%;
-  }
+.nav-content {
+  margin-left: 25px;
+  border-bottom: 3px solid orangered;
+}
+.nav {
+  display: inline-block;
+  padding: 5px 8px;
+  transition: background-color 0.1s;
+}
+.cur {
+  background-color: orangered;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  border-radius: 4px;
+}
+.content {
+  height: calc(100% - 118px);
+  overflow-y: auto;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+.widge {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.box {
+  padding: 5px 8px;
+  border: 1px dashed #666;
 }
 </style>

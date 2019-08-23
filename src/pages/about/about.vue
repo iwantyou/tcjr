@@ -4,13 +4,15 @@
       <div
         v-for="(item ,index) in feather"
         v-html="item"
-        :class=" current == index ? 'redright' : ''"
+        :class="['nav',{'redright': current == index}]"
         @click="current = index"
         :key="index"
       ></div>
     </div>
     <div class="right">
-      <div class="header" v-html="feather[current]"></div>
+      <div class="header" v-if="current == 0">关于我们</div>
+      <div class="header" v-if="current == 1">加入我们</div>
+      <div class="header" v-if="current == 2">网站声明</div>
       <div class="content">很棒棒团</div>
     </div>
   </div>
@@ -30,33 +32,30 @@ export default {
 .about {
   background: #ccc;
   width: 100%;
-  height: 500px;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-
+  margin-top: 5px;
   .left {
     width: 100px;
-    height: 100px;
     font-size: 14px;
-
+    padding-top: 8px;
+    .nav {
+      padding: 5px 0px 5px 10px;
+      background: white;
+      &:hover {
+        border-left: 2px solid red;
+      }
+    }
     .redright {
       border-left: 2px solid red;
     }
-
-    div {
-      padding: 5px 0px 5px 10px;
-      background: white;
-      margin-top: 1px;
-    }
   }
-
   .right {
     flex: 1;
     background: white;
-    margin: 0px 10px;
+    margin: 9px 10px;
     font-size: 14px;
-
     .header {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;

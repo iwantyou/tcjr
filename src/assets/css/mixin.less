@@ -1,0 +1,23 @@
+ .clearfix {
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+.pd-tb(@mount){
+    padding-top: @mount;
+    padding-bottom: @mount;
+} 
+.pd-lr(@mount){
+  padding-left:@mount;
+  padding-right: @mount;
+}
+.mar-tb(@mount){
+  margin-top: @mount;
+  margin-bottom: @mount;
+}
+.mar-lr(@mount){
+  margin-left: @mount;
+  margin-right: @mount
+}

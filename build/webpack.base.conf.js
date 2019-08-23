@@ -77,8 +77,13 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        test: /\.sass$/,
+        use: ['style-loader', 'css-loader', {
+          loader: 'sass-loader',
+          options: {
+            indentedSyntax: true
+          }
+        }]
       },
       {
         test: /\.less$/,

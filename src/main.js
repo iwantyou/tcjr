@@ -6,6 +6,8 @@ import router from './router'
 import store from '@/vuex/index.js'
 import './assets/css/base.css'
 import './assets/css/element.defa.css'
+import './assets/css/flex.css'
+// import './assets/css/mixin.scss'
 // 添加iconfont字体
 import './assets/iconfont/iconfont.css'
 import moment from 'moment'

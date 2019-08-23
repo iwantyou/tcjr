@@ -23,7 +23,7 @@ const fulltime = async function (req, res) {
     limit: limit,
     offset: (page - 1) * limit
   }).then(res1 => { res1.get({ plain: true }) })
-  const loadmore = result.count % limit !== 0 && result.length < limit
+  const loadmore = !(result.count % limit !== 0 && result.length < limit)
   if (result.error) {
     res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
     res.end()
@@ -52,7 +52,7 @@ const fullsort = async function (res, req) {
       [feather, 'DESC']
     ]
   }).then(res1 => { res1.get({ plain: true }) })
-  const loadmore = result.count % limit !== 0 && result.length < limit
+  const loadmore = !(result.count % limit !== 0 && result.length < limit)
   if (result.error) {
     res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
     res.end()
