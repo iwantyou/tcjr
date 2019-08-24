@@ -30,13 +30,16 @@
           </li>
           <li v-if="login">
             <router-link to="/register">
-              <i class="beforeL">|</i> 注册 <i class="afterL">|</i>
+              <i class="beforeL">|</i> 注册
+              <i class="afterL">|</i>
             </router-link>
           </li>
           <li v-else class="photo">
             <el-dropdown @command="handleCommand" placement="top">
               <span class="el-dropdown-link">
-                 <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1116454900,3735379103&fm=27&gp=0.jpg">
+                <img
+                  src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1116454900,3735379103&fm=27&gp=0.jpg"
+                />
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a">个人信息</el-dropdown-item>
@@ -57,56 +60,56 @@
   </header>
 </template>
 <script>
-import Vue from 'vue'
-import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui'
-Vue.use(Dropdown)
-Vue.use(DropdownMenu)
-Vue.use(DropdownItem)
+import Vue from "vue";
+import { Dropdown, DropdownMenu, DropdownItem } from "element-ui";
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
 export default {
-  name: 'holder',
-  data () {
+  name: "holder",
+  data() {
     return {
       login: !this.$store.state.login
-    }
+    };
   },
   methods: {
-    handleCommand (command) {
-      if (command === 'a') {
-        this.$router.push({name: 'selfDetail'})
-      } else if (command === 'd') {
-        this.$store.state.login = false
-        this.$router.push('/')
+    handleCommand(command) {
+      if (command === "a") {
+        this.$router.push({ name: "selfDetail" });
+      } else if (command === "d") {
+        this.$store.state.login = false;
+        this.$router.push("/");
       }
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
-.el-dropdown-menu{
+.el-dropdown-menu {
   text-align: center;
   letter-spacing: 2px;
   margin: 1px 0;
 }
-.active{
+.active {
   border-bottom: 2px solid #f46d43;
   font-weight: 600;
   color: #f46d43 !important;
-  i{
+  i {
     color: #333;
   }
 }
-header{
+header {
   height: 50px;
-  .header{
+  .header {
     width: 1200px;
     margin: 0 auto;
-    .logo{
+    .logo {
       width: 190px;
       height: 50px;
       background-color: blue;
       float: left;
-      background-image:url('../../../src/assets/images/logo.png');
-      a{
+      background-image: url("../../../src/assets/images/logo.png");
+      a {
         cursor: default;
         height: 50px;
         display: block;
@@ -114,41 +117,41 @@ header{
         overflow: hidden;
       }
     }
-    .nav{
+    .nav {
       float: left;
       width: 1010px;
       height: 50px;
-      .home{
+      .home {
         float: left;
         margin-left: 49px;
-        li{
+        li {
           float: left;
-          a{
+          a {
             display: block;
             width: 80px;
             height: 48px;
             line-height: 50px;
             text-align: center;
-            color:#333;
+            color: #333;
           }
-          :hover{
+          :hover {
             border-bottom: 2px solid #f46d43;
             font-weight: 600;
             color: #f46d43;
           }
-          .close{
+          .close {
             color: #999;
           }
         }
       }
-      .login{
-        float:right;
+      .login {
+        float: right;
         margin-right: 20px;
         font-size: 14px;
-        li{
-          float:left;
+        li {
+          float: left;
           width: 60px;
-          a{
+          a {
             color: #333;
             width: 60px;
             height: 48px;
@@ -156,36 +159,36 @@ header{
             line-height: 50px;
             text-align: center;
             position: relative;
-            .beforeL{
+            .beforeL {
               line-height: 50px;
               position: absolute;
               left: 0;
               top: 0;
             }
-            .afterL{
+            .afterL {
               line-height: 50px;
               position: absolute;
               right: 0;
               top: 0;
             }
           }
-          a:hover{
+          a:hover {
             border-bottom: 2px solid #f46d43;
             font-weight: 600;
             color: #f46d43;
-            i{
+            i {
               color: #333;
             }
           }
         }
-        .photo{
+        .photo {
           margin: 5px 16px 0 0;
           width: 40px;
           height: 40px;
           border-radius: 20px;
           background-color: #fff;
           position: relative;
-          img{
+          img {
             width: 40px;
             height: 40px;
             border-radius: 20px;
