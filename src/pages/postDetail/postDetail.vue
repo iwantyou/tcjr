@@ -11,12 +11,16 @@ export default {
       itemData: ""
     };
   },
+  created() {
+    this.getData();
+  },
   methods: {
     getData() {
       getdetail({ item_id }).then(res => {
         console.log(JSON.stringify(res));
         if (res.code === 0) {
           const { itemData } = res.data;
+          this.itemData = itemData;
         } else {
           this.$message({
             type: "warning",
