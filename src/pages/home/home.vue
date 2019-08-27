@@ -46,18 +46,21 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import { Button } from 'element-ui'
-Vue.use(Button)
-
+import NPprogress from 'nprogress';
 export default {
   name: 'home',
   data () {
     return {
       msg: '当前是首页页面，首页基于当前进行开发即可'
-    }
+    };
+  },
+  created () {
+    NPprogress.start();
+    setTimeout(() => {
+      NPprogress.done();
+    }, 3000);
   }
-}
+};
 </script>
 
 <style scoped>

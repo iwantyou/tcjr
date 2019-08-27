@@ -28,6 +28,12 @@ function getpw (password, salt) {
 function checkpw (password, salt, password2) {
   return getpw(password, salt) === password2
 }
+/**
+ * 默认昵称
+ */
+function getname (mobile) {
+
+}
 module.exports = {
   makeuid,
   Rescode,

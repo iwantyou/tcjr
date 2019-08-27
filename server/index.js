@@ -22,24 +22,20 @@ function origin (opt) {
   return '*';
 }
 // 作用与app.use(cors()) 一样
-app.use(
-  logger(
-    ':date[iso] :method :url :status :response-time ms - :res[content-length]'
-  )
-);
-app.all('*', function (req, res, next) {
-  // console.log(res)
-  res.header('Access-Control-Allow-Origin', origin(req.headers.origin));
-  res.header('Access-Control-Allow-Headers', 'Content-type, accept, authen');
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('content-type', 'application/json;chartset:utf-8');
-  if (req.method.toUpperCase() === 'OPTIONS') res.send(200);
-  // 快速回应预请求
-  else {
-    next();
-  }
-});
+app.use(logger(':date[iso] :method :url :status :response-time ms - :res[content-length]'));
+// app.all('*', function (req, res, next) {
+//   // console.log(res)
+//   res.header('Access-Control-Allow-Origin', origin(req.headers.origin));
+//   res.header('Access-Control-Allow-Headers', 'Content-type, accept, authen');
+//   res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.header('content-type', 'application/json;chartset:utf-8');
+//   if (req.method.toUpperCase() === 'OPTIONS') res.send(200);
+//   // 快速回应预请求
+//   else {
+//     next();
+//   }
+// });
 app.use(router);
 server.listen(port, host, function () {
   console.log(`process sever host:${host} port: ${port}`);

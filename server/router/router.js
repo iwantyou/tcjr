@@ -3,9 +3,10 @@ var Joi = require('@hapi/joi')
 var db = require('../db')
 var config = require('../config')
 var upload = require('../upload')
-var rescode = require('../resultinfo')
-var RES_SUCCESS = require('../resultinfo')
-var RES_ERROR = require('../resultinfo')
+var resultinfo = require('../resultinfo')
+var { rescode } = require('../resultinfo')
+var { RES_SUCCESS } = require('../resultinfo')
+var { RES_ERROR } = require('../resultinfo')
 var creatToken = require('../middleware/creatToken')
 var { fulltime, fullsort, postiondetail } = require('./fulltime')
 var creatresume = require('./resum')
@@ -13,6 +14,7 @@ var utils = require('../utils')
 
 // 登录
 const login = async function (req, res) {
+  console.log('登录', req.body)
   const { username, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
@@ -23,21 +25,26 @@ const login = async function (req, res) {
     res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
   }
-  let admin = await db.User.findOne({ where: { username, password }, attributes: ['username', 'password'] }).then(res1 => res1.get({ plain: true }))
+  let admin = await db.User.findOne({ where: { username }, attributes: ['salt', 'password'] })
   console.log(admin)
   let token = creatToken(req.body, config.jwt_secret)
   if (admin.err) { res.json(RES_ERROR(rescode.ERROR_ACCOUNT)); res.end() } else {
-    res.json(RES_SUCCESS(token))
-    res.end()
+    if (utils.checkpw(password, admin.salt, admin.password)) {
+      res.json(RES_SUCCESS(token))
+      res.end()
+    } else {
+      res.json(RES_ERROR(rescode.ERROR_ACCOUNT))
+      res.end()
+    }
   }
 }
 // 注册
 const register = async function (req, res) {
-  const { name, password, mobile } = req.body
+  const { name, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required(),
-    mobile: Joi.number().length(11).required()
+    password: Joi.string().min(6).max(16).required()
+    // mobile: Joi.number().length(11).required()
     // repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
