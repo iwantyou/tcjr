@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <transition name="rotate-fall">
+    <router-view />
+  </transition>
 </template>
 <script>
 export default {
