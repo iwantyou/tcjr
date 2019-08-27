@@ -3,16 +3,10 @@ var Joi = require('@hapi/joi')
 var db = require('../db')
 var config = require('../config')
 var upload = require('../upload')
-<<<<<<< HEAD
-var {rescode} = require('../resultinfo')
-var {RES_SUCCESS} = require('../resultinfo')
-var {RES_ERROR}  = require('../resultinfo')
-=======
 var resultinfo = require('../resultinfo')
 var { rescode } = require('../resultinfo')
 var { RES_SUCCESS } = require('../resultinfo')
 var { RES_ERROR } = require('../resultinfo')
->>>>>>> 79c611a887233aaca1df30234acb43e8910a41a3
 var creatToken = require('../middleware/creatToken')
 var { fulltime, fullsort, postiondetail } = require('./fulltime')
 var creatresume = require('./resum')
@@ -31,11 +25,7 @@ const login = async function (req, res) {
     res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
   }
-<<<<<<< HEAD
-  let admin = await db.User.findOne({ where: { username}, attributes: ['username', 'password'] })
-=======
   let admin = await db.User.findOne({ where: { username }, attributes: ['salt', 'password'] })
->>>>>>> 79c611a887233aaca1df30234acb43e8910a41a3
   console.log(admin)
   let token = creatToken(req.body, config.jwt_secret)
   if (admin.err) { res.json(RES_ERROR(rescode.ERROR_ACCOUNT)); res.end() } else {
@@ -50,17 +40,10 @@ const login = async function (req, res) {
 }
 // 注册
 const register = async function (req, res) {
-<<<<<<< HEAD
-  const { name, password, repassword } = req.body
-  const schema = Joi.object().keys({
-    username: Joi.string().required(),
-    password: Joi.string().min(6).max(16).required(),
-=======
   const { name, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
     password: Joi.string().min(6).max(16).required()
->>>>>>> 79c611a887233aaca1df30234acb43e8910a41a3
     // mobile: Joi.number().length(11).required()
     // repassword: Joi.string().min(6).max(16).required()
   })
