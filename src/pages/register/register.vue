@@ -31,7 +31,7 @@
 </template>
 <script>
 import Vue from 'vue';
-import { register } from '@x';
+import { register, register1 } from '@x';
 import { Input, Button } from 'element-ui';
 Vue.use(Input);
 Vue.use(Button);
@@ -49,24 +49,24 @@ export default {
       if (!this.email) return this.$message('email不能为空');
       if (!this.password) return this.$message('密码不能为空');
       if (!this.repassword) return this.$message('重复密码不能为空');
+      if (this.password !== this.repassword) return this.$message('重复密码应与密码一致')
       var registerfrom = {
-        name: this.email,
-        password: this.password,
-        repassword: this.repassword
+        username: this.email,
+        password: this.password
       };
       var that = this;
-      register(registerfrom).then(function (res) {
+      register1(registerfrom).then(function (res) {
         console.log(JSON.stringify(res));
-        if (res.data.code === 0) {
+        if (res.code === 0) {
           that.$message({
-            message: res.data.msg,
+            message: res.data.message,
             type: 'success'
           });
           setTimeout(() => {
             that.$router.push('/login');
           }, 2000);
         } else {
-          alert(res.data.msg);
+          alert(res.msg);
         }
       });
     }
@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .register {
-  height: calc(100% - 350px);
+  height: calc(100% - 50px);
   width: 100%;
   background-image: url(../../assets/images/backg.jpg);
   background-repeat: no-repeat;

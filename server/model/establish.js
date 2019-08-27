@@ -3,9 +3,9 @@ var sequelize = require('../mysql')
 
 var Resume = sequelize.define('resume', {
   user_id: { type: Sequelize.STRING, unique: true },
-  sex: { type: Sequelize.ENUM, values: ['男', '女'], defaultvalue: '男' }, // 性别
+  sex: { type: Sequelize.ENUM('value 0', 'value 1'), defaultValue: 0 }, // 性别
   birthday: { type: Sequelize.STRING, allowNull: true }, // 生日
-  deliver: { type: Sequelize.ARRAY, allowNull: true }, // 投递职位
+  deliver: { type: Sequelize.STRING, allowNull: true }, // 投递职位
   education: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -22,7 +22,7 @@ var Resume = sequelize.define('resume', {
 //   as: 'resume',
 //   targetKey: 'resume_id'
 // })
-Resume.async()
+Resume.sync()
 module.exports = {
   Resume
 }

@@ -30,6 +30,6 @@ export default {
   background-color: #f8fafc;
 }
 .layout {
-  height: calc(100% - 350px);
+  height: calc(100% - 50px);
 }
 </style>

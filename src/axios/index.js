@@ -14,6 +14,9 @@ ajax.interceptors.request.use(config => {
 }, err => {
   Promise.reject(err).catch(err => err)
 })
+ajax.interceptors.response.use(res => res.data, err => {
+  Promise.reject(err).catch(err => err)
+})
 // eslint-disable-next-line import/export
 export * from './post'
 // eslint-disable-next-line import/export

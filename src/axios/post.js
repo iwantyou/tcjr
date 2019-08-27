@@ -20,6 +20,8 @@ export const getfulldata = () =>
  */
 // 注册
 export const register = (param) => ajax.post('/v1/register', param).then(res => res)
+// 注册1
+export const register1 = (param) => ajax.post('/v2/register1', param).then(res => res)
 /**
  * interface loginparam{
  *   username : string;

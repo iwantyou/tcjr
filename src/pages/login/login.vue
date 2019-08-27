@@ -4,7 +4,7 @@
     <div class="login_box">
       <h1>登录</h1>
       <div style="margin-top:30px">
-        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="loginform.name">
+        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="loginform.username">
           <i slot="prefix" class="el-input__icon el-icon-user-solid" style="font-size:18px"></i>
         </el-input>
       </div>
@@ -16,7 +16,7 @@
       <div class="forget">
         <a href>忘记密码？</a>
       </div>
-      <el-button type="warning" class="login_btn">登录</el-button>
+      <el-button type="warning" class="login_btn" @click="login">登录</el-button>
     </div>
     <div class="register">
       <span>还没有账号?</span>
@@ -39,14 +39,14 @@ export default {
   data () {
     return {
       loginform: {
-        name: null,
+        username: null,
         password: null
       }
     };
   },
   methods: {
     login () {
-      if (!this.loginform.name) return this.$message('用户名不能为空');
+      if (!this.loginform.username) return this.$message('用户名不能为空');
       if (!this.loginform.password) return this.$message('密码不能为空');
       login(this.loginform)
         .then(res => {
@@ -69,7 +69,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .login {
-  height: calc(100% - 350px);
+  height: calc(100% - 50px);
   width: 100%;
   background-image: url(../../assets/images/backg.jpg);
   background-repeat: no-repeat;

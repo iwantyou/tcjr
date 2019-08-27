@@ -4,13 +4,13 @@ var Sequelize = require('sequelize')
 var Fulltime = db.define('fulltime', {
   item_id: { type: Sequelize.INTEGER, primaryKey: true, allowNull: false, autoIncreament: true }, // 职位id
   item_title: { type: Sequelize.TEXT, allowNull: false }, // 职位名称
-  item_des: { type: Sequelize.ARRAY, allowNull: true }, // 职位描述
+  item_des: { type: Sequelize.STRING, allowNull: true }, // 职位描述
   item_privence: { type: Sequelize.STRING, allowNull: true }, // 归属省
   createdAt: { type: Sequelize.DATE, allowNull: true, defaultValue: Date.now() }, // 创建时间
   updateAt: { type: Sequelize.DATE, allowNull: true, defaultValue: Date.now() }, // 更新时间
   item_public_time: { type: Sequelize.STRING, allowNull: false }, // 发布时间
   item_price: { type: Sequelize.INTEGER, allowNull: false }, // 薪资
-  item_state: { type: Sequelize.ENUM, values: [0, 1] }, // 0 招聘中 1停止招聘
+  item_state: { type: Sequelize.ENUM('value 0', 'value 1')}, // 0 招聘中 1停止招聘
   item_finance: { type: Sequelize.STRING, allowNull: false }, // 公司是否融资
   item_name: { type: Sequelize.STRING, allowNull: false }, // 公司名称
   item_city: { type: Sequelize.STRING, allowNull: false }, // 公司所在城市
