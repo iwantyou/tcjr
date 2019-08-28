@@ -6,7 +6,7 @@ var rescode = exports.rescode = {
   ERROR_FORMAT: 1003,
   ERROR_ACCOUNT: 1004,
   ERROR_NULL: 1005,
-  ERROR_HAVE: 1006,
+  ERROR_HAVE: 1006
 
 }
 var errmessage = {
@@ -28,12 +28,12 @@ Resff.prototype.initmessage = function () {
   this.msg = errmessage[this.code]
   return this
 }
-exports.RES_SUCCESS  = function (data) {
+exports.RES_SUCCESS = function (data) {
   var result = new Resff(rescode.ok)
   result.data = data
   return result.initmessage()
 }
-exports.RES_ERROR  = function (errcode, data = null) {
+exports.RES_ERROR = function (errcode, data = null) {
   var result = new Resff(errcode)
   if (data) { result.data = data; }
   return result.initmessage()

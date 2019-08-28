@@ -40,7 +40,7 @@ app.use(router)
 server.listen(port, host, function () {
   console.log(`process sever host:${host} port: ${port}`)
 })
-function shouldCompress(req, res) {
+function shouldCompress (req, res) {
   if (req.headers['x-no-compression']) {
     return false;
   }

@@ -45,10 +45,10 @@
           </ul>
           <ul class="code clearfix">
             <li>
-              <img src="../../../src/assets/images/hero.png" alt="">
+              <img src="" alt="">
             </li>
             <li>
-              <img src="../../../src/assets/images/hero.png" alt="">
+              <img src="" alt="">
             </li>
           </ul>
         </div>

@@ -9,27 +9,27 @@
   </div>
 </template>
 <script>
-import holder from '@/components/header/header';
-import foot from '@/components/footer/footer';
+import holder from "@/components/header/header";
+import foot from "@/components/footer/footer";
 export default {
-  name: 'layout',
+  name: "layout",
   components: {
     holder,
     foot
   },
-  data () {
+  data() {
     return {};
   }
 };
 </script>
 <style lang="less" scoped>
 #app {
-  width: 100%;
+  min-width: 1256px;
   height: 100%;
   overflow: auto;
   background-color: #f8fafc;
 }
 .layout {
-  height: calc(100% - 50px);
+  min-height: calc(100% - 350px);
 }
 </style>

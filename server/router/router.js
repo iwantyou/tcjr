@@ -40,7 +40,7 @@ const login = async function (req, res) {
 }
 // 注册
 const register = async function (req, res) {
-  const { name, password } = req.body
+  const { username, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
     password: Joi.string().min(6).max(16).required()
@@ -62,25 +62,24 @@ const register = async function (req, res) {
     }
   }
 }
-// 注册1 
-const register1 = async function(req, res){
-  const {username, password} = req.body
+// 注册1
+const register1 = async function (req, res) {
+  const { username, password } = req.body
   console.log(JSON.stringify(req.body))
   var schema = Joi.object().keys({
     username: Joi.string().required(),
-    password:Joi.string().required()
+    password: Joi.string().required()
   })
   var result = Joi.validate(req.body, schema)
-  if(result.error) {res.json(RES_ERROR(rescode.ERROR_ACCOUNT));res.end()}
-  else{
-    var userRes =await db.User.findOrCreate({where:{username},defaults:{createTime:Date.now(),password}}).then(res=>res).catch(err=>err)
-    if(userRes[1]){
+  if (result.error) { res.json(RES_ERROR(rescode.ERROR_ACCOUNT)); res.end() } else {
+    var userRes = await db.User.findOrCreate({ where: { username }, defaults: { createTime: Date.now(), password } }).then(res => res).catch(err => err)
+    if (userRes[1]) {
       // console.log(JSON.stringify(RES_SUCCESS({message: '注册成功'})))
       console.log('创建成功')
-      res.json(RES_SUCCESS({message: '注册成功'}))
+      res.json(RES_SUCCESS({ message: '注册成功' }))
       res.end()
-    }else{
-      res.json(RES_ERROR(rescode.ERROR_HAVE,{message:'注册失败'}))
+    } else {
+      res.json(RES_ERROR(rescode.ERROR_HAVE, { message: '注册失败' }))
       res.end()
     }
     //  console.log(JSON.stringify(userRes))
