@@ -57,11 +57,16 @@
               @click="cur = index;"
             >{{item.label}}</li>
           </ul>
-          <div class="home_mid_right_content">
+          <div class="home_mid_right_content hot_pos" v-if="cur == 0">
             <ul>
-              <li>
-                <a></a>
+              <li v-for="(item, index) in pos_sort" :key="index">
+                <span
+                  :style=" 'padding-right:10px;color:' + (index == 0 ? '#f94e4c;font-style:italic;': index == 1 ? '#ff910d;font-style:italic;': index ==2 ? '#ffbe00;font-style:italic;': '') "
+                >{{index+1}}</span>
+                <span class="hot_title">{{item.title}}</span>
+                <span>{{item.price}}</span>
               </li>
+              <li style="text-align:center;font-size:18px;padding-top:40px;">查看更多</li>
             </ul>
           </div>
         </el-col>
@@ -261,6 +266,16 @@ export default {
         }
       ],
       cur: 0,
+      pos_sort: [
+        { title: "web前端开发工程师", price: "8000/月" },
+        { title: "java", price: "8000/月" },
+        { title: "大数据研发", price: "10000/月" },
+        { title: "人工智能", price: "8000/月" },
+        { title: "区块链", price: "8000/月" },
+        { title: "物联网", price: "10000/月" },
+        { title: "物联网", price: "8000/月" },
+        { title: "物联网", price: "8000/月" }
+      ],
       tableValue: "所有职位",
       imgData: [
         "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=7fb26fe54fd8525e12b9b79e82e3f68a&src=http://static.open.baidu.com/media/ch6/png/pcbanner-peixun.png",
@@ -363,7 +378,7 @@ img {
   display: none;
   position: absolute;
   top: 0;
-  left: 250px;
+  left: 249px;
   /* box-shadow: 0 0 40px 0 rgba(68, 68, 255, 0.2);
    */
   box-shadow: 0 0 40px 0 rgba(81, 131, 255, 0.35);
@@ -438,5 +453,20 @@ img {
 .home_mid_right ul.home_mid_right_h > li:hover {
   color: orangered;
   border-bottom: 2px solid orangered;
+}
+.hot_pos ul {
+  list-style: none;
+  margin-top: 20px;
+}
+.hot_pos ul > li {
+  font-size: 14px;
+  padding-left: 15px;
+}
+span.hot_title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
 }
 </style>
