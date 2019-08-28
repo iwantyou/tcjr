@@ -36,7 +36,8 @@
         <el-col class="home_mid_mid" :span="14">
           <el-carousel height="430px" trigger="click" autoplay arrow="hover" :loop="true">
             <el-carousel-item v-for="item in imgData" :key="item">
-              <a src="javascript:;" :style="'bakground-size:cover;background:url('+item+')'" />
+              <!-- <a src="javascript:;" :style="'bakground-size:cover;background:url('+item+')'" /> -->
+              <img :src="item" width=100% height=100%>
             </el-carousel-item>
           </el-carousel>
         </el-col>
@@ -66,7 +67,7 @@
                 <span class="hot_title">{{item.title}}</span>
                 <span>{{item.price}}</span>
               </li>
-              <li style="text-align:center;font-size:18px;padding-top:40px;">查看更多</li>
+              <li>查看更多<i class="el-icon-caret-right hot_arrow"></i></li>
             </ul>
           </div>
         </el-col>
@@ -75,216 +76,215 @@
   </div>
 </template>
 <script>
-import NPprogress from "nprogress";
+import NPprogress from 'nprogress';
 export default {
-  name: "home",
-  data() {
+  name: 'home',
+  data () {
     return {
-      positiontime: "",
-      position_value: "",
+      positiontime: '',
+      position_value: '',
       position_sort: [
         {
-          id: "0",
-          title: "所有职位"
+          id: '0',
+          title: '所有职位'
         },
         {
-          id: "1",
-          title: "全职"
+          id: '1',
+          title: '全职'
         },
         {
-          id: "2",
-          title: "兼职"
+          id: '2',
+          title: '兼职'
         }
       ],
       postionData: [
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "市场", pos_data: ["1", "2", "3"] },
-            { pos: "客服", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "公关", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '市场', pos_data: ['1', '2', '3'] },
+            { pos: '客服', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '公关', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["技工", "工人", "生产", "机械"],
+          left: ['技工', '工人', '生产', '机械'],
           right: [
             {
-              pos: "技工",
+              pos: '技工',
               pos_data: [
-                "普工",
-                "电工",
-                "木工",
-                "钳工",
-                "焊工",
-                "钣金工",
-                "锅炉工",
-                "油漆工",
-                "缝纫工",
-                "维修工",
-                "水暖工",
-                "车工",
-                "叉车工",
-                "手机维修",
-                "电梯工",
-                "操作工",
-                "包装工",
-                "水泥工",
-                "钢筋工",
-                "纺织工",
-                "管道工",
-                "样衣工",
-                "装卸工"
+                '普工',
+                '电工',
+                '木工',
+                '钳工',
+                '焊工',
+                '钣金工',
+                '锅炉工',
+                '油漆工',
+                '缝纫工',
+                '维修工',
+                '水暖工',
+                '车工',
+                '叉车工',
+                '手机维修',
+                '电梯工',
+                '操作工',
+                '包装工',
+                '水泥工',
+                '钢筋工',
+                '纺织工',
+                '管道工',
+                '样衣工',
+                '装卸工'
               ]
             },
             {
-              pos: "生产",
+              pos: '生产',
               pos_data: [
-                "质量管理",
-                "生产组长",
-                "车间主任",
-                "工艺设计",
-                "生产总监",
-                "高级工程师"
+                '质量管理',
+                '生产组长',
+                '车间主任',
+                '工艺设计',
+                '生产总监',
+                '高级工程师'
               ]
             },
-            { pos: "机械", pos_data: ["机械工程", "仪器仪表", "机电版图设计"] }
+            { pos: '机械', pos_data: ['机械工程', '仪器仪表', '机电版图设计'] }
           ]
         },
         {
-          left: ["司机", "物流", "贸易", "保险"],
+          left: ['司机', '物流', '贸易', '保险'],
           right: [
-            { pos: "司机", pos_data: ["1", "2", "3"] },
-            { pos: "物流", pos_data: ["1", "2", "3"] },
-            { pos: "贸易", pos_data: ["1", "2", "3"] },
-            { pos: "保险", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '司机', pos_data: ['商务司机', '客车司机', '出租车司机', '班车司机', '驾校教练', '带车司机', '地铁司机', '高铁司机', '小车司机', '快车司机', '专车司机'] },
+            { pos: '物流', pos_data: ['快递员', '仓库管理', '搬运工', '物流专员', '物流经理', '调度员'] },
+            { pos: '贸易', pos_data: ['外贸', '专员', '外贸经理', '采购员', '采购经理', '商务专员', '报关员', '买手'] },
+            { pos: '保险', pos_data: ['保险', '推销', '保险顾问', '核保理赔', '保险经纪人', '保险精算师', '契约管理', '保险内勤'] }
           ]
         },
         {
-          left: ["餐饮", "酒店", "超市", "服务业"],
+          left: ['餐饮', '酒店', '超市', '服务业'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["销售", "市场", "客服", "公关"],
+          left: ['销售', '市场', '客服', '公关'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         },
         {
-          left: ["更多职位"],
+          left: ['更多职位'],
           right: [
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] },
-            { pos: "销售", pos_data: ["1", "2", "3"] }
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] },
+            { pos: '销售', pos_data: ['1', '2', '3'] }
           ]
         }
       ],
       tab: [
         {
           id: 0,
-          label: "排行"
+          label: '排行'
         },
         {
           id: 1,
-          label: "资讯"
+          label: '资讯'
         },
         {
           id: 2,
-          label: "经验"
+          label: '经验'
         },
         {
           id: 3,
-          label: "视频"
+          label: '视频'
         },
         {
           id: 4,
-          label: "职播"
+          label: '职播'
         }
       ],
       cur: 0,
       pos_sort: [
-        { title: "web前端开发工程师", price: "8000/月" },
-        { title: "java", price: "8000/月" },
-        { title: "大数据研发", price: "10000/月" },
-        { title: "人工智能", price: "8000/月" },
-        { title: "区块链", price: "8000/月" },
-        { title: "物联网", price: "10000/月" },
-        { title: "物联网", price: "8000/月" },
-        { title: "物联网", price: "8000/月" }
+        { title: 'web前端开发工程师', price: '8000/月' },
+        { title: 'java', price: '8000/月' },
+        { title: '大数据研发', price: '10000/月' },
+        { title: '人工智能', price: '8000/月' },
+        { title: '区块链', price: '8000/月' },
+        { title: '物联网', price: '10000/月' },
+        { title: '物联网', price: '8000/月' },
+        { title: '物联网', price: '8000/月' }
       ],
-      tableValue: "所有职位",
+      tableValue: '所有职位',
       imgData: [
-        "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=7fb26fe54fd8525e12b9b79e82e3f68a&src=http://static.open.baidu.com/media/ch6/png/pcbanner-peixun.png",
-        "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=478e41e912dcb422c33ea06f5178bca8&src=http://static.open.baidu.com/media/ch6/jpg/ruzhu_1380x1040_2.jpg",
-        "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=3bb79ff171da5d6c7d07f05e0003e1d2&src=http://static.open.baidu.com/media/ch6/jpg/quanzhi_1380x1040_2.jpg"
+        'https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=7fb26fe54fd8525e12b9b79e82e3f68a&src=http://static.open.baidu.com/media/ch6/png/pcbanner-peixun.png',
+        'https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=478e41e912dcb422c33ea06f5178bca8&src=http://static.open.baidu.com/media/ch6/jpg/ruzhu_1380x1040_2.jpg',
+        'https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=3bb79ff171da5d6c7d07f05e0003e1d2&src=http://static.open.baidu.com/media/ch6/jpg/quanzhi_1380x1040_2.jpg'
       ] // 幻灯片数组
     };
   },
-  created() {
+  created () {
     NPprogress.start();
     setTimeout(() => {
       NPprogress.done();
@@ -447,8 +447,11 @@ img {
 .home_mid_right ul > li {
   display: inline-block;
   font-size: 16px;
-  padding: 5px;
+  padding: 5px 5px 12px;
   transition: border-color 0.35s;
+}
+.home_mid_right_h{
+  cursor: pointer
 }
 .home_mid_right ul.home_mid_right_h > li:hover {
   color: orangered;
@@ -461,12 +464,29 @@ img {
 .hot_pos ul > li {
   font-size: 14px;
   padding-left: 15px;
+  cursor: pointer
+}
+.hot_pos ul > li span{
+  display:inline-block;
+}
+.hot_title + span{
+  color: #666;
+}
+.hot_pos ul li:nth-last-child(1){
+display:block;text-align:center;font-size:12px;padding-top:25px;
+}
+.hot_pos ul li:nth-last-child(1):hover, .hot_pos ul li:nth-last-child(1):hover .hot_arrow{
+  color: blueviolet;
+}
+.hot_arrow{
+  color:#000;
 }
 span.hot_title {
-  display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   max-width: 100px;
+  width:100px;
+  vertical-align: bottom;
 }
 </style>
