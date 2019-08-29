@@ -95,12 +95,37 @@
         </el-col>
       </el-row>
     </div>
+    <!-- 求职内容 三类-->
+    <post-classify></post-classify>
+    <post-classify></post-classify>
+    <post-classify></post-classify>
+    <!-- 热门-->
+    <div class="hot_place">
+      <h1 class="text-center mar-b30">热门</h1>
+      <el-row>
+        <el-col class="hot_place_main" :span="8" v-for="(item, index) in hotplace" :key="index">
+          <div style="margin-bottom:20px;font-size:18px">{{item.title}}</div>
+          <span v-for="item1 in item.hot" :key="item1" class="span">{{item1}}</span>
+        </el-col>
+      </el-row>
+    </div>
+    <!--职位搜索 -->
+    <!-- <div class="zhiwei_search">
+      <h1 class="text-center mar-b30">职位搜索</h1>
+      <el-row>
+        <el-col :span="6" v-for="(item, index) in engineData" :key="index"></el-col>
+      </el-row>
+    </div>-->
   </div>
 </template>
 <script>
 import NPprogress from "nprogress";
+import postClassify from "@/components/post-classify";
 export default {
   name: "home",
+  components: {
+    postClassify
+  },
   data() {
     return {
       positiontime: "",
@@ -412,7 +437,54 @@ export default {
         "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=7fb26fe54fd8525e12b9b79e82e3f68a&src=http://static.open.baidu.com/media/ch6/png/pcbanner-peixun.png",
         "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=478e41e912dcb422c33ea06f5178bca8&src=http://static.open.baidu.com/media/ch6/jpg/ruzhu_1380x1040_2.jpg",
         "https://timg.baidu.com/timg?zhaopin&quality=100&size=w700&sec=1566954877&di=3bb79ff171da5d6c7d07f05e0003e1d2&src=http://static.open.baidu.com/media/ch6/jpg/quanzhi_1380x1040_2.jpg"
-      ] // 幻灯片数组
+      ], // 幻灯片数组
+      engineData: [
+        {
+          imgurl: ""
+        }
+      ],
+      hotplace: [
+        {
+          title: "热门职位",
+          hot: ["前端", "Java", "php", "大数据"]
+        },
+        {
+          title: "热招企业",
+          hot: [
+            "百度",
+            "富士康",
+            "万达集团",
+            "蒙牛集团",
+            "中石油",
+            "中国人寿",
+            "中国平安",
+            "阿里巴巴",
+            "中国移动",
+            "工商银行"
+          ]
+        },
+        {
+          title: "热门区域",
+          hot: [
+            "北京",
+            "上海",
+            "广州",
+            "深圳",
+            "厦门",
+            "成都",
+            "西安",
+            "天津",
+            "南京",
+            "武汉",
+            "沈阳",
+            "杭州",
+            "合肥",
+            "青岛",
+            "大连",
+            "重庆"
+          ]
+        }
+      ]
     };
   },
   created() {
@@ -445,6 +517,9 @@ export default {
 </style>
 
 <style less="scss" scoped>
+.text-center {
+  text-align: center;
+}
 .active {
   color: orangered;
   border-bottom: 2px solid orangered;
@@ -459,17 +534,18 @@ img {
   background-position: top;
   background-size: 1920px 530px;
   letter-spacing: 1px;
+  background-color: #f5f5f5;
 }
 .home_h {
   width: 800px;
   margin: 0 auto;
-  padding-top: 25px;
+  padding-top: 50px;
 }
 .home_mid {
   max-width: 1200px;
   height: 430px;
-  margin: 50px auto;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  margin: 50px auto 30px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.7);
   background-color: #fff;
   overflow: hidden;
   border-radius: 5px;
@@ -680,5 +756,30 @@ span.hot_title {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+}
+.hot_place {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px 30px;
+  box-sizing: border-box;
+}
+.hot_place_main {
+  padding: 0 30px;
+}
+.hot_place_main:hover {
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+.mar-b30 {
+  margin-bottom: 50px;
+}
+.span {
+  display: inline-block;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  color: #666;
+}
+.span:hover {
+  color: #5183ff;
 }
 </style>
