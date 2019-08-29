@@ -1,6 +1,7 @@
 var uuid = require('uuid/v4')
 var crypto = require('crypto')
 var config = require('./config')
+var moment = require('moment')
 function makeuid () {
   return uuid().replace(/-/g, '')
 }
@@ -29,6 +30,12 @@ function checkpw (password, salt, password2) {
   return getpw(password, salt) === password2
 }
 /**
+ * date : now
+ */
+function salt (date) {
+  return moment(date).valueOf().substr(2, 5)
+}
+/**
  * 默认昵称
  */
 function getname (mobile) {
@@ -38,5 +45,6 @@ module.exports = {
   makeuid,
   Rescode,
   getpw,
-  checkpw
+  checkpw,
+  salt
 }

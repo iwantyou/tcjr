@@ -15,6 +15,10 @@ var Resume = sequelize.define('resume', {
       if (this.getDataValue('education') === 2) return '硕士生'
       if (this.getDataValue('education') === 3) return '博士生'
     }
+  },
+  resume_id: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 })
 // Resume.belongsTo('User', {

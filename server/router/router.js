@@ -53,9 +53,11 @@ const register = async function (req, res) {
     res.end()
   } else {
     try {
-      var user = await db.User.findOrCreate({ where: { username }, defaults: { name, password, resum_id: utils.makeuid() } })
+      let salt = utils.salt(Date.now())
+      let password2 = utils.getpw(password, salt)
+      var user = await db.User.findOrCreate({ where: { username }, defaults: { name, password: password2, resum_id: utils.makeuid(), salt } })
       console.log(JSON.stringify(user))
-      if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR({})); res.end() }
+      if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR(rescode.ERROR_HAVE)); res.end() }
     } catch (err) {
       console.log(err, '查询失败')
       res.end()

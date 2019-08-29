@@ -18,11 +18,16 @@ var User = sequelize.define('user', {
   timestamps: false,
   tableName: 'user'
 })
-User.hasOne(Resume, {
+User.hasMany(Resume, {
   foreignKey: 'user_id',
   key: 'resume_id'
 })
+Resume.belongsTo(User, {
+  foreignKey: 'user_id',
+  targetKey: 'resume_id'
+})
 User.sync()
+Resume.sync()
 module.exports = {
   User
 }
