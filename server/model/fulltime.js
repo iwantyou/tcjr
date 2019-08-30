@@ -10,7 +10,7 @@ var Fulltime = db.define('fulltime', {
   updateAt: { type: Sequelize.DATE, allowNull: true, defaultValue: Date.now() }, // 更新时间
   item_public_time: { type: Sequelize.STRING, allowNull: false }, // 发布时间
   item_price: { type: Sequelize.INTEGER, allowNull: false }, // 薪资
-  item_state: { type: Sequelize.ENUM('value 0', 'value 1')}, // 0 招聘中 1停止招聘
+  item_state: { type: Sequelize.ENUM('value 0', 'value 1') }, // 0 招聘中 1停止招聘
   item_finance: { type: Sequelize.STRING, allowNull: false }, // 公司是否融资
   item_name: { type: Sequelize.STRING, allowNull: false }, // 公司名称
   item_city: { type: Sequelize.STRING, allowNull: false }, // 公司所在城市
@@ -20,7 +20,9 @@ var Fulltime = db.define('fulltime', {
     type: Sequelize.BOOLEAN, allowNull: false, get () { return this.getDataValue('item_position_state') ? '全职' : '兼职' }
   }// 1 全职 0 兼职
 })
-Fulltime.sync([{ force: true }])
+Fulltime.sync([{ force: true }]).then(res => {
+  console.log('fulltime creat success !!!')
+})
 // for (let i = 0; i < fulltimedata.length; i++) {
 //   Fulltime.create({
 //     ...fulltimedata[1],

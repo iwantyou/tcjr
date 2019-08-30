@@ -9,6 +9,7 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
+    "build:report": "npm_config_report=true node build/build.js",
     "server": "set MYSQL_URL=mysql://root:118783@localhost:3306/tcjr && nodemon server",
     "server1": "export MYSQL_URL=mysql://root:118783@localhost:3306/tcjr && nodemon server"
   },

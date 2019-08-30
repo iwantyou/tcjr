@@ -111,6 +111,7 @@ export default {
   box-sizing: border-box;
   margin: 0 auto;
   background-color: #fff;
+  padding-top: 15px;
   padding-bottom: 30px;
   border-radius: 6px;
 }
@@ -125,7 +126,6 @@ h1 {
   letter-spacing: 9px;
   color: #5179ff;
   position: relative;
-  padding-top: 10px;
 }
 .des::before,
 .des::after {
@@ -204,5 +204,7 @@ h1 {
   padding: 0px 8px;
   margin-right: 5px;
   color: #000;
+  position: relative;
+  top: -2px;
 }
 </style>

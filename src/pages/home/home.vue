@@ -748,8 +748,7 @@ span.hot_title {
 }
 .information ul > li .information_msg {
   padding-left: 65px;
-  margin-bottom: 10px;
-  padding-top: 10px;
+  margin-bottom: 20px;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 105px;

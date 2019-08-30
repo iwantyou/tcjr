@@ -1,8 +1,8 @@
 var db = require('../db')
 var Sequelize = require('sequelize')
-var rescode = require('../resultinfo')
-var RES_SUCCESS = require('../resultinfo')
-var RES_ERROR = require('../resultinfo')
+var { rescode } = require('../resultinfo')
+var { RES_SUCCESS } = require('../resultinfo')
+var { RES_ERROR } = require('../resultinfo')
 var fulldata = require('../data/fulltimedata')
 var joi = require('@hapi/joi')
 const Op = Sequelize.Op
@@ -48,7 +48,7 @@ const fullsort = async function (res, req) {
     where: { item_position_state },
     limit,
     offset: (page - 1) * limit,
-    'order': [
+    order: [
       [feather, 'DESC']
     ]
   }).then(res1 => { res1.get({ plain: true }) })
