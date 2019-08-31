@@ -90,7 +90,7 @@
                     :hide-on-single-page="false"
                     :pager-count="7"
                     :current-page="1"
-                    layout="prev, pager, next, jumper, ->, total"
+                    layout="prev, pager, next"
                     :total="10"
                   ></el-pagination>
                 </div>
@@ -184,6 +184,30 @@ export default {
           company: "海寂信息咨询有限公司",
           place: "郑州金水区",
           public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
         }
       ]
     };
@@ -195,7 +219,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .wrapper {
   background: url(https://zhaopin.baidu.com/static/newpczhaopin/65e20c1232bbdbc9ede5d97b0a89c1d1.png)
     no-repeat;

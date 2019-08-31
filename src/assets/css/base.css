@@ -150,7 +150,6 @@ html {
 }
 
 body {
-    font-size: 16px;
     height: 100%;
     width: 100%;
     overflow-x: hidden;
@@ -203,13 +202,4 @@ a{
 .between{
     justify-content: space-between
 }
-.flex-33{
-    max-width: 33.33%;
-    width: 33.33%;
-}
-.flex-25{
-    max-width: 25%;
-    width: 25%;
-}
-
 

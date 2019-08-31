@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <fixhearder></fixhearder>
     <!-- 头部 -->
     <holder></holder>
     <!-- body -->
@@ -11,11 +12,13 @@
 <script>
 import holder from "@/components/header/header";
 import foot from "@/components/footer/footer";
+import fixhearder from "@/components/fixheader/index";
 export default {
   name: "layout",
   components: {
     holder,
-    foot
+    foot,
+    fixhearder
   },
   data() {
     return {};
