@@ -8,15 +8,6 @@ var Resume = sequelize.define('resume', {
   deliver: { type: Sequelize.STRING, allowNull: true }, // 投递职位
   education: {
     type: Sequelize.INTEGER,
-<<<<<<< HEAD
-    allowNull: false
-  }
-})
-Resume.sync().then(() => {
-  console.log('Resume 创建成功！')
-}).catch(err=>{
-  console.log(err,'Resume 创建失败')
-=======
     allowNull: true,
     get () {
       if (this.getDataValue('education') === 0) return '高中生'
@@ -28,7 +19,6 @@ Resume.sync().then(() => {
 })
 Resume.sync().then(res => {
   console.log('resumetable creat success !!! ')
->>>>>>> 8a819cc0cdf6fea2686b4f8775d6db1bf11e29a5
 })
 module.exports = {
   Resume
