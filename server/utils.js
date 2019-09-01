@@ -32,8 +32,8 @@ function checkpw (password, salt, password2) {
 /**
  * date : now
  */
-function salt (date) {
-  return moment(date).valueOf().substr(2, 5)
+function salt () {
+  return 's:'
 }
 /**
  * 默认昵称
@@ -41,10 +41,14 @@ function salt (date) {
 function getname (mobile) {
 
 }
+function getDate(){
+  return Date.now()
+}
 module.exports = {
   makeuid,
   Rescode,
   getpw,
   checkpw,
-  salt
+  salt,
+  getDate
 }
