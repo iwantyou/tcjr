@@ -1,178 +1,341 @@
 <template>
-  <!--创建活动 -->
-  <div class="creat" style="min-height:calc(100% - 50px)">
-    <img src="../../assets/images/wenxintishi.png" class="img" />
-    <div class="tips">
-      <div>温馨提示</div>
-      <div class="small" style="font-size:85%;color:#666;">请认真填写基本活动信息</div>
-    </div>
-    <div class="input">
-      <label for="activity" style="padding-left:10px;">
-        <input type="text" id="activity" placeholder="请输入活动名称" required />
-      </label>
-    </div>
-    <div class="updownload">
-      <label style="display:inline-block;cursor:pointer;" for="up">
-        <div
-          style="width:8rem;height:8rem;background:#FAFAFA;border:1px solid #ccc;
-border-radius: 2px;"
-        >
-          <div style="text-align:center;font-size:1.5rem;color:#ccc">
-            <img class="img-add" src="../../assets/images/iconfont707.png" />
+  <div class="wrapper">
+    <div class="container">
+      <div class="box">
+        <div class="search">
+          <el-input type="text" v-model="search" placeholder="请输入要搜索的职位">
+            <el-button slot="append" icon="el-icon-search"></el-button>
+          </el-input>
+        </div>
+        <div class="nav">
+          <span v-for="(item, index) in navData" :key="index">{{item}}</span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content_box">
+          <div class="box_item">
+            <em>工作地点:</em>
+            <span
+              v-for="(item ,index) in placeData[0]"
+              :key="index"
+              :class="[{'col-block': cur == index}]"
+              @click="cur = index"
+            >{{item}}</span>
           </div>
-          <div class="text-center">上传活动封面</div>
+          <div class="box_item">
+            <em>工作年限:</em>
+            <span
+              v-for="(item ,index) in placeData[1]"
+              :key="index"
+              :class="[{'col-block': cur1 == index}]"
+              @click="cur1 = index"
+            >{{item}}</span>
+          </div>
+          <div class="box_item">
+            <em>更多选项:</em>
+            <span :class="[{'col-block': !cur2}]" @click="cur2 = false;checkvalue=[]">不限</span>
+            <el-checkbox-group
+              v-model="checkvalue"
+              text-color="#5183ff"
+              style="display: inline-block;padding-left:15px"
+              @change="check()"
+            >
+              <el-checkbox
+                v-for="(item ,index) in placeData[2]"
+                :key="index"
+                :label="index"
+              >{{item}}</el-checkbox>
+            </el-checkbox-group>
+          </div>
         </div>
-      </label>
-      <input type="file" id="up" style="display:none;" accept="image/png, image/jpg, image/jpeg" />
-    </div>
-    <div class="updownload" draggable="ture" @drop="drop($event)">
-      <label style="display:inline-block;cursor:pointer;" for="drop">
-        <div class="drag">
-          <img class="db-img-bl" src="../../assets/images/wenjian.png" />
-          <p>点击或将文件拖拽这里上传</p>
-          <p>支持扩展名: .rar .zip .doc .docx .pdf .jpg</p>
+      </div>
+      <div class="pos">
+        <div class="pos_box">
+          <el-row :gutter="20">
+            <el-col :span="18" class="left">
+              <div class="box_header">
+                <span
+                  v-for="(item ,index) in seData"
+                  :key="index"
+                  :class="[{'col-block': pos_index == index}]"
+                  @click="pos_index = index"
+                >{{item}}</span>
+                <p class="msg">
+                  为您优选
+                  <em style="color:#5183ff">{{mount}}</em>个放心职位
+                </p>
+              </div>
+              <div class="pos_content">
+                <div class="pos_content_box" v-for="(item ,index) in content" :key="index">
+                  <el-row>
+                    <el-col :span="14">
+                      <h2>{{item.title}}</h2>
+                      <h3>{{item.way}}</h3>
+                      <p>{{item.mode}}</p>
+                    </el-col>
+                    <el-col :span="5">
+                      <p>{{item.company}}</p>
+                      <p>{{item.place}}</p>
+                      <p>{{item.public}}</p>
+                    </el-col>
+                    <el-col :span="5" style="text-align:right">
+                      <el-button type="primary" size="small" round class="button">申请职位</el-button>
+                    </el-col>
+                  </el-row>
+                </div>
+                <div class="foot_el">
+                  <el-pagination
+                    background
+                    :page-size="1"
+                    :hide-on-single-page="false"
+                    :pager-count="7"
+                    :current-page="1"
+                    layout="prev, pager, next"
+                    :total="10"
+                  ></el-pagination>
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="4" class="right">
+              <p>哈哈，没有内容气不气</p>
+            </el-col>
+          </el-row>
         </div>
-      </label>
-      <input type="file" id="drop" accep="*" />
-    </div>
-    <div class="acti-time">
-      <input type="text" placeholder="开始时间" required />
-      <span>-----</span>
-      <input type="text" placeholder="结束时间" required />
-    </div>
-    <div class="activi-content">
-      <textarea class="text-content" placeholder="活动内容"></textarea>
-    </div>
-    <div class="but">
-      <div>提交</div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "partTime",
-
   data() {
     return {
-      msg: "当前是兼职页面"
+      search: "",
+      navData: [
+        "派单",
+        "销售",
+        "地推",
+        "家教",
+        "模特",
+        "实习",
+        "客服",
+        "导购",
+        "钟点工"
+      ],
+      placeData: [
+        [
+          "不限",
+          "中牟县",
+          "金水区",
+          "二七区",
+          "管城回族区",
+          "中原区",
+          "惠济区",
+          "上街区"
+        ],
+        [
+          "不限",
+          "传单派发",
+          "推广促销",
+          "家教翻译",
+          "服务员",
+          "钟点工",
+          "实习生",
+          "市场销售",
+          "校园代理",
+          "客服话务",
+          "展会演出",
+          "礼仪模特",
+          "安保人员",
+          "调研问卷",
+          "观众充场",
+          "其他"
+        ],
+        ["周末兼职", "日结"]
+      ],
+      cur: 0,
+      cur1: 0,
+      cur2: false,
+      checkvalue: [],
+      seData: ["综合排序", "最新发布", "职位保障"],
+      mount: 1083,
+      pos_index: 0,
+      content: [
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        },
+        {
+          title: "辅导机构诚聘话务员",
+          way: "面议",
+          mode: "客服方式",
+          company: "海寂信息咨询有限公司",
+          place: "郑州金水区",
+          public: "当当网"
+        }
+      ]
     };
   },
   methods: {
-    drop(e) {
-      e.preventDefault();
-      let length = e.dataTransfer.flies.length;
-      if (length > 0) {
-        this.$message("上传成功");
-      }
+    check() {
+      this.cur2 = true;
     }
   }
 };
 </script>
-<style scoped>
-input[type="file"] {
-  display: none;
-}
-input[type="text"] {
-  line-height: 2rem;
-  border: 1px solid #ccc;
-  width: calc(50% - 25px);
-}
-.creat {
-  padding: 2rem;
-}
-.img {
-  width: 2.5rem;
-  height: 2.5rem;
-  vertical-align: -3px;
-}
-.text-center {
-  text-align: center;
-  color: #666;
-}
-.updownload {
-  display: block;
-  padding: 0.5rem 0;
-}
-
-.img-add {
-  width: 4rem;
-  height: 4rem;
-  padding-top: 1rem;
-}
-.tips {
-  display: inline-block;
-  padding-left: 5px;
-  padding-bottom: 1rem;
-}
-.input {
-  border: 1px solid #ccc;
-  line-height: 2;
-  width: 40%;
-}
-.input input {
-  border: none;
-  width: calc(100% - 10px);
-}
-.input:focus-within {
-  box-shadow: 0 0 2px #5bc0de;
-}
-.drag {
-  width: 20rem;
-  height: 10rem;
-  text-align: center;
-  border: 1px solid #ccc;
-  background: #fafafa;
-}
-.db-img-bl {
-  padding-top: 1.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-}
-.drag p {
-  padding-top: 0.5rem;
-}
-.drag p:last-of-type {
-  font-size: 85%;
-  color: #ccc;
-  text-overflow: ellipsis;
-}
-.acti-time {
-  width: 40%;
-  padding: 0.5rem 0;
-}
-.acti-time input:focus {
-  box-shadow: 0 0 2px #5bc0de;
-}
-.activi-content {
-  width: 40%;
-  height: 10rem;
-  border: 1px solid #ccc;
-  padding: 0.5rem 0 0 0.5rem;
-  box-sizing: border-box;
-  background: #fafafa;
-  margin: 1rem 0 0.5rem;
-}
-.activi-content textarea {
-  width: calc(100% - 0.5rem);
-  height: calc(100% - 0.5rem);
-  background: #fafafa;
-}
-.activi-content:focus-within {
-  box-shadow: 0 0 2px #67afe9;
-}
-.but {
-  padding: 1rem 0;
-}
-.but div {
-  width: 30%;
-  text-align: center;
-  line-height: 3rem;
-  background: #1aad19;
-  color: #fff;
-  border-radius: 5px;
-  opacity: 0.8;
-}
-.but div:hover {
-  opacity: 1;
+<style lang="scss" scoped>
+.wrapper {
+  background: url(https://zhaopin.baidu.com/static/newpczhaopin/65e20c1232bbdbc9ede5d97b0a89c1d1.png)
+    no-repeat;
+  background-position: top;
+  background-size: 100% 220px;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .box {
+      width: 800px;
+      margin: 0 auto;
+      .search {
+        padding-top: 50px;
+        padding-bottom: 25px;
+      }
+      .nav {
+        text-align: center;
+        span:not(:nth-child(1)) {
+          margin-left: 21px;
+        }
+        span {
+          cursor: pointer;
+          font-size: 14px;
+          color: #666;
+        }
+        span:hover {
+          color: #5183ff;
+        }
+      }
+    }
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      .content_box {
+        box-sizing: border-box;
+        margin-top: 30px;
+        padding: 30px;
+        .box_item {
+          position: relative;
+          padding-left: 54px;
+          color: #666;
+          font-size: 14px;
+          em {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          span {
+            display: inline-block;
+            margin-left: 21px;
+            padding-bottom: 20px;
+            color: #000;
+            cursor: pointer;
+          }
+          .col-block {
+            color: #5183ff;
+          }
+        }
+      }
+    }
+    .pos {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      .pos_box {
+        padding: 30px;
+        .box_header {
+          font-size: 14px;
+          color: #666;
+          span {
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-right: 21px;
+            cursor: pointer;
+          }
+          .col-block {
+            color: #5183ff;
+          }
+          .msg {
+            float: right;
+          }
+        }
+        .pos_content {
+          margin-top: 30px;
+          .pos_content_box {
+            padding-bottom: 20px;
+            padding-top: 20px;
+            border-bottom: 1px solid #eee;
+            h3 {
+              padding-top: 15px;
+              color: orangered;
+            }
+            p {
+              padding-top: 15px;
+              color: #666;
+              font-size: 14px;
+            }
+            .button {
+              position: relative;
+              top: 40px;
+            }
+          }
+          .foot_el {
+            text-align: center;
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

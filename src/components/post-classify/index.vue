@@ -111,6 +111,7 @@ export default {
   box-sizing: border-box;
   margin: 0 auto;
   background-color: #fff;
+  padding-top: 15px;
   padding-bottom: 30px;
   border-radius: 6px;
 }

@@ -14,6 +14,7 @@
       height: 100%;
       z-index: 999999;
     }
+
     #loader {
       display: block;
       position: relative;
@@ -38,6 +39,7 @@
       /* Chrome, Firefox 16+, IE 10+, Opera */
       z-index: 1001;
     }
+
     #loader:before {
       content: "";
       position: absolute;
@@ -60,6 +62,7 @@
       animation: spin 3s linear infinite;
       /* Chrome, Firefox 16+, IE 10+, Opera */
     }
+
     #loader:after {
       content: "";
       position: absolute;
@@ -82,6 +85,7 @@
       animation: spin 1.5s linear infinite;
       /* Chrome, Firefox 16+, IE 10+, Opera */
     }
+
     @-webkit-keyframes spin {
       0% {
         -webkit-transform: rotate(0deg);
@@ -91,6 +95,7 @@
         transform: rotate(0deg);
         /* Firefox 16+, IE 10+, Opera */
       }
+
       100% {
         -webkit-transform: rotate(360deg);
         /* Chrome, Opera 15+, Safari 3.1+ */
@@ -100,6 +105,7 @@
         /* Firefox 16+, IE 10+, Opera */
       }
     }
+
     @keyframes spin {
       0% {
         -webkit-transform: rotate(0deg);
@@ -109,6 +115,7 @@
         transform: rotate(0deg);
         /* Firefox 16+, IE 10+, Opera */
       }
+
       100% {
         -webkit-transform: rotate(360deg);
         /* Chrome, Opera 15+, Safari 3.1+ */
@@ -118,6 +125,7 @@
         /* Firefox 16+, IE 10+, Opera */
       }
     }
+
     #loader-wrapper .loader-section {
       position: fixed;
       top: 0;
@@ -134,12 +142,15 @@
       transform: translateX(0);
       /* Firefox 16+, IE 10+, Opera */
     }
+
     #loader-wrapper .loader-section.section-left {
       left: 0;
     }
+
     #loader-wrapper .loader-section.section-right {
       right: 0;
     }
+
     /* Loaded */
     .loaded #loader-wrapper .loader-section.section-left {
       -webkit-transform: translateX(-100%);
@@ -151,6 +162,7 @@
       -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
       transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
     }
+
     .loaded #loader-wrapper .loader-section.section-right {
       -webkit-transform: translateX(100%);
       /* Chrome, Opera 15+, Safari 3.1+ */
@@ -161,11 +173,13 @@
       -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
       transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
     }
+
     .loaded #loader {
       opacity: 0;
       -webkit-transition: all 0.3s ease-out;
       transition: all 0.3s ease-out;
     }
+
     .loaded #loader-wrapper {
       visibility: hidden;
       -webkit-transform: translateY(-100%);
@@ -177,13 +191,16 @@
       -webkit-transition: all 0.3s 1s ease-out;
       transition: all 0.3s 1s ease-out;
     }
+
     /* JavaScript Turned Off */
     .no-js #loader-wrapper {
       display: none;
     }
+
     .no-js h1 {
       color: #222222;
     }
+
     #loader-wrapper .load_title {
       font-family: 'Open Sans';
       color: #FFF;
@@ -196,6 +213,7 @@
       opacity: 1;
       line-height: 30px;
     }
+
     #loader-wrapper .load_title span {
       font-weight: normal;
       font-style: italic;
@@ -220,4 +238,5 @@
   </div>
   <!-- built files will be auto injected -->
 </body>
+
 </html>

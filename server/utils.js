@@ -33,7 +33,12 @@ function checkpw (password, salt, password2) {
  * date : now
  */
 function salt () {
+<<<<<<< HEAD
   return 's:'
+=======
+  let time = moment().valueOf()
+  return time.toString().substr(2, 5)
+>>>>>>> 8a819cc0cdf6fea2686b4f8775d6db1bf11e29a5
 }
 /**
  * 默认昵称

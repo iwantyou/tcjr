@@ -24,6 +24,7 @@ const login = async function (req, res) {
   if (result.error) {
     res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
+    return;
   }
   let admin = await db.User.findOne({ where: { username }, attributes: ['salt', 'password'] })
   console.log(admin)
@@ -40,12 +41,11 @@ const login = async function (req, res) {
 }
 // 注册
 const register = async function (req, res) {
+  console.log('注册', req.body)
   const { username, password } = req.body
   const schema = Joi.object().keys({
     username: Joi.string().required(),
     password: Joi.string().min(6).max(16).required()
-    // mobile: Joi.number().length(11).required()
-    // repassword: Joi.string().min(6).max(16).required()
   })
   var result = Joi.validate(req.body, schema)
   if (result.error) {
@@ -55,9 +55,16 @@ const register = async function (req, res) {
     try {
       let salt = utils.salt()
       let password2 = utils.getpw(password, salt)
-      var user = await db.User.findOrCreate({ where: { username }, defaults: { password: password2, resume_id: utils.makeuid(), salt, idcars:0,createdtime:utils.getDate() } })
-      console.log(JSON.stringify(user))
-      if (user[1]) { res.json(RES_SUCCESS({ message: '注册成功' })); res.end() } else { res.json(RES_ERROR(rescode.ERROR_HAVE)); res.end() }
+      var user = await db.User.findOrCreate({ where: { username }, defaults: { password: password2, resum_id: utils.makeuid(), salt } })
+      console.log(user)
+      if (user[1]) {
+        await user.creatResume({ sex: '0' });
+        res.json(RES_SUCCESS({ message: '注册成功' }));
+        res.end()
+      } else {
+        res.json(RES_ERROR(rescode.ERROR_HAVE));
+        res.end()
+      }
     } catch (err) {
       console.log(err, '查询失败')
       res.end()
