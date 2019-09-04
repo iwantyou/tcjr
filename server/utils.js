@@ -33,8 +33,7 @@ function checkpw (password, salt, password2) {
  * date : now
  */
 function salt () {
-  let time = moment().valueOf()
-  return time.toString().substr(2, 5)
+  return 's:'
 }
 /**
  * 文本颜色
@@ -45,6 +44,9 @@ function textToColor (str) {
   for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
   for (var j = 0, color = '#'; j < 3; color += ('00' + ((hash >> j++ * 2) & 0xFF).toString(16)).slice(-2));
   return color;
+}
+function getDate () {
+  return Date.now()
 }
 module.exports = {
   makeuid,

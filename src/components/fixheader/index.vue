@@ -69,8 +69,8 @@
 </template>
 <script>
 export default {
-  name: "fixheader",
-  data() {
+  name: 'fixheader',
+  data () {
     return {
       Data: [1, 2, 2, 2, 2],
       cur: false,
@@ -82,26 +82,26 @@ export default {
     title: {
       type: Object,
       default: () => ({
-        f: "岗位选择",
-        s: "地区",
+        f: '岗位选择',
+        s: '地区',
         fData: [1, 2, 34, 4, 6, 7, 8],
         sData: [0, 0, 0, 0, 0, 0]
       })
     }
   },
-  mounted() {
+  mounted () {
     this.mou();
     console.log(111);
   },
   methods: {
-    mou() {
-      this.scrolltop = document.querySelector("#app").scrollTop ? "true" : "";
+    mou () {
+      this.scrolltop = document.querySelector('#app').scrollTop ? 'true' : '';
       document.body.addEventListener(
-        "wheel",
+        'wheel',
         () => {
-          this.scrolltop = document.querySelector("#app").scrollTop
-            ? "true"
-            : "";
+          this.scrolltop = document.querySelector('#app').scrollTop
+            ? 'true'
+            : '';
         },
         false
       );

@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize')
 var sequelize = require('../mysql')
+var { User } = require('./user')
 
 var Resume = sequelize.define('resume', {
   sex: { type: Sequelize.ENUM('value 0', 'value 1') }, // 性别

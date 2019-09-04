@@ -55,7 +55,7 @@ export default {
         password: this.password
       };
       var that = this;
-      register1(registerfrom).then(function (res) {
+      register(registerfrom).then(function (res) {
         console.log(JSON.stringify(res));
         if (res.code === 0) {
           that.$message({
