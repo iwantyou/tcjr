@@ -22,6 +22,11 @@ export default {
   },
   data() {
     return {};
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to.path, from.path);
+    }
   }
 };
 </script>

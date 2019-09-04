@@ -37,15 +37,20 @@ function salt () {
   return time.toString().substr(2, 5)
 }
 /**
- * 默认昵称
+ * 文本颜色
+ * @param {*} str 字符串
  */
-function getname (mobile) {
-
+function textToColor (str) {
+  if (!str || str.length === 0) return false;
+  for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
+  for (var j = 0, color = '#'; j < 3; color += ('00' + ((hash >> j++ * 2) & 0xFF).toString(16)).slice(-2));
+  return color;
 }
 module.exports = {
   makeuid,
   Rescode,
   getpw,
   checkpw,
-  salt
+  salt,
+  textToColor
 }

@@ -1,6 +1,7 @@
 const user = {
   state: {
-    login: false
+    login: false,
+    test: false
   },
   mutations: {
   },

@@ -21,7 +21,7 @@
     <div class="register">
       <span>还没有账号?</span>
       <router-link to="/register">
-        <span class="signup">免费注册</span>
+        <span class="signup">免费注册{{testfn}}</span>
       </router-link>
     </div>
     <div class="footer"></div>
@@ -32,6 +32,7 @@ import Vue from 'vue';
 import { login } from '@x';
 import { Input, Button } from 'element-ui';
 import jscookie from 'js-cookie';
+import { mapState, mapGetters } from 'vuex';
 Vue.use(Input);
 Vue.use(Button);
 export default {
@@ -43,6 +44,12 @@ export default {
         password: null
       }
     };
+  },
+  computed: {
+    ...mapState({
+      login1: state => state.user.login
+    }),
+    ...mapGetters(['testfn'])
   },
   methods: {
     login () {
@@ -139,138 +146,5 @@ export default {
       color: #ff9500;
     }
   }
-  // .Lfooter {
-  //   position: absolute;
-  //   bottom: 80px;
-  //   left: 50%;
-  //   transform: translateX(-50%);
-
-  //   .signup {
-  //     display: inline-block;
-  //     padding-left: 5px;
-  //     color: orangered;
-  //   }
-  // }
-
-  // .content {
-  //   position: absolute;
-  //   left: 50%;
-  //   top: 80px;
-  //   transform: translateX(-50%);
-  //   width: 300px;
-  //   height: 280px;
-  //   border-top: 5px solid orangered;
-  //   background: white;
-
-  //   .header {
-  //     color: orangered;
-  //     text-align: center;
-  //     margin: 20px 0;
-  //     font-size: 18px;
-  //   }
-
-  //   .xiyi {
-  //     text-align: center;
-  //     font-size: 12px;
-  //     padding-top: 5px;
-  //   }
-
-  //   .common {
-  //     display: flex;
-  //     padding: 10px 20px 5px 20px;
-
-  //     .inputs {
-  //       flex: 1;
-  //       display: flex;
-  //       border: 1px solid #666;
-  //       border-radius: 3px;
-  //       padding: 5px 0;
-  //       color: #f6f6f6;
-  //       margin-right: 8px;
-
-  //       input {
-  //         flex: 1;
-  //         padding-left: 10px;
-  //         border: none;
-  //       }
-  //     }
-
-  //     .getcode {
-  //       background: #666;
-  //       padding: 5px 5px;
-  //       border-radius: 3px;
-  //     }
-  //   }
-
-  //   .inputm {
-  //     display: -webkit-flex;
-  //     display: flex;
-  //     margin: 20px 20px 0px 20px;
-  //     border: 1px solid #666;
-  //     border-radius: 3px;
-  //     padding: 5px 0;
-
-  //     .icon {
-  //       width: 20px;
-  //       height: 20px;
-  //       background: url(../../assets/images/mima.png);
-
-  //       background-size: 20px 20px;
-  //     }
-
-  //     .icon1 {
-  //       width: 20px;
-  //       height: 20px;
-  //       background: url(../../assets/images/zh.png);
-
-  //       background-size: 20px 20px;
-  //     }
-
-  //     input {
-  //       flex: auto;
-  //       color: #666;
-  //       padding-left: 15px;
-  //       line-height: 20px;
-  //       outline: none;
-  //     }
-  //   }
-
-  //   .forgetword {
-  //     color: blue;
-  //     position: relative;
-  //     font-size: 12px;
-
-  //     div {
-  //       position: absolute;
-  //       top: 3px;
-  //       right: 20px;
-  //     }
-  //   }
-
-  //   .loginbutton {
-  //     color: white;
-  //     background: orangered;
-  //     margin: 90px 20px 10px;
-  //     text-align: center;
-  //     line-height: 30px;
-  //     border-radius: 5px;
-  //   }
-  //   .signupbutton {
-  //     color: white;
-  //     background: orangered;
-  //     margin: 20px 20px 10px;
-  //     text-align: center;
-  //     line-height: 30px;
-  //     border-radius: 5px;
-  //   }
-  //   .yanzhengbutton {
-  //     color: white;
-  //     background: orangered;
-  //     margin: 80px 20px 10px;
-  //     text-align: center;
-  //     line-height: 30px;
-  //     border-radius: 5px;
-  //   }
-  // }
 }
 </style>
