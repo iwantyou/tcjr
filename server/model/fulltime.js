@@ -20,15 +20,8 @@ var Fulltime = db.define('fulltime', {
     type: Sequelize.BOOLEAN, allowNull: false, get () { return this.getDataValue('item_position_state') ? '全职' : '兼职' }
   }// 1 全职 0 兼职
 })
-<<<<<<< HEAD
-Fulltime.sync([{ force: true }]).then(() => {
-  console.log('Fulltime 创建成功！')
-}).catch(err=>{
-  console.log('Fulltime 创建失败')
-=======
 Fulltime.sync([{ force: true }]).then(res => {
   console.log('fulltime creat success !!!')
->>>>>>> 8a819cc0cdf6fea2686b4f8775d6db1bf11e29a5
 })
 // for (let i = 0; i < fulltimedata.length; i++) {
 //   Fulltime.create({

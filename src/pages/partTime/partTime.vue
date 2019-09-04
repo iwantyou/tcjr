@@ -51,7 +51,7 @@
       </div>
       <div class="pos">
         <div class="pos_box">
-          <el-row :gutter="20">
+          <el-row :span="24">
             <el-col :span="18" class="left">
               <div class="box_header">
                 <span
@@ -96,8 +96,10 @@
                 </div>
               </div>
             </el-col>
-            <el-col :span="4" class="right">
-              <p>哈哈，没有内容气不气</p>
+            <el-col :span="6" class="right">
+              <div class="right-wrap">
+                <p>哈哈，没有内容气不气</p>
+              </div>
             </el-col>
           </el-row>
         </div>
@@ -107,113 +109,113 @@
 </template>
 <script>
 export default {
-  name: "partTime",
-  data() {
+  name: 'partTime',
+  data () {
     return {
-      search: "",
+      search: '',
       navData: [
-        "派单",
-        "销售",
-        "地推",
-        "家教",
-        "模特",
-        "实习",
-        "客服",
-        "导购",
-        "钟点工"
+        '派单',
+        '销售',
+        '地推',
+        '家教',
+        '模特',
+        '实习',
+        '客服',
+        '导购',
+        '钟点工'
       ],
       placeData: [
         [
-          "不限",
-          "中牟县",
-          "金水区",
-          "二七区",
-          "管城回族区",
-          "中原区",
-          "惠济区",
-          "上街区"
+          '不限',
+          '中牟县',
+          '金水区',
+          '二七区',
+          '管城回族区',
+          '中原区',
+          '惠济区',
+          '上街区'
         ],
         [
-          "不限",
-          "传单派发",
-          "推广促销",
-          "家教翻译",
-          "服务员",
-          "钟点工",
-          "实习生",
-          "市场销售",
-          "校园代理",
-          "客服话务",
-          "展会演出",
-          "礼仪模特",
-          "安保人员",
-          "调研问卷",
-          "观众充场",
-          "其他"
+          '不限',
+          '传单派发',
+          '推广促销',
+          '家教翻译',
+          '服务员',
+          '钟点工',
+          '实习生',
+          '市场销售',
+          '校园代理',
+          '客服话务',
+          '展会演出',
+          '礼仪模特',
+          '安保人员',
+          '调研问卷',
+          '观众充场',
+          '其他'
         ],
-        ["周末兼职", "日结"]
+        ['周末兼职', '日结']
       ],
       cur: 0,
       cur1: 0,
       cur2: false,
       checkvalue: [],
-      seData: ["综合排序", "最新发布", "职位保障"],
+      seData: ['综合排序', '最新发布', '职位保障'],
       mount: 1083,
       pos_index: 0,
       content: [
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         },
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         },
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         },
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         },
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         },
         {
-          title: "辅导机构诚聘话务员",
-          way: "面议",
-          mode: "客服方式",
-          company: "海寂信息咨询有限公司",
-          place: "郑州金水区",
-          public: "当当网"
+          title: '辅导机构诚聘话务员',
+          way: '面议',
+          mode: '客服方式',
+          company: '海寂信息咨询有限公司',
+          place: '郑州金水区',
+          public: '当当网'
         }
       ]
     };
   },
   methods: {
-    check() {
+    check () {
       this.cur2 = true;
     }
   }
@@ -270,15 +272,18 @@ export default {
             top: 0;
             left: 0;
           }
+          span:nth-of-type(1) {
+            color: #000;
+          }
           span {
             display: inline-block;
             margin-left: 21px;
             padding-bottom: 20px;
-            color: #000;
+            color: #666;
             cursor: pointer;
           }
           .col-block {
-            color: #5183ff;
+            color: #5183ff !important;
           }
         }
       }
@@ -332,6 +337,16 @@ export default {
           .foot_el {
             text-align: center;
             margin-top: 20px;
+          }
+        }
+        .right {
+          background: rgba(0, 0, 0, 0.08);
+          padding-left: 20px;
+          box-sizing: border-box;
+          .right-wrap {
+            background-color: #fff;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
           }
         }
       }
