@@ -1,7 +1,8 @@
 const user = {
   state: {
     login: false,
-    test: false
+    test: false,
+    qrstatus: '请扫码登录...'
   },
   mutations: {
   },

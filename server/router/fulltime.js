@@ -51,7 +51,7 @@ const fullsort = async function (res, req) {
     order: [
       [feather, 'DESC']
     ]
-  }).then(res1 => { res1.get({ plain: true }) })
+  })
   const loadmore = !(result.count % limit !== 0 && result.length < limit)
   if (result.error) {
     res.json(RES_ERROR(rescode.ERROR_CODE, result.error))
@@ -65,7 +65,7 @@ const fullsort = async function (res, req) {
 const postiondetail = async function (req, res) {
   // eslint-disable-next-line camelcase
   const { item_id } = req.body
-  var result = await db.Fulltime.findById({ item_id }).then(res1 => res1.get({ plain: true }))
+  var result = await db.Fulltime.findById({ item_id })
   if (result.error) { res.json(RES_ERROR(rescode.ERROR_FORMAT)); res.end() } else {
     res.json(RES_SUCCESS(result));
     res.end()

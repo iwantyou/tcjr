@@ -23,14 +23,6 @@ var Fulltime = db.define('fulltime', {
 Fulltime.sync([{ force: true }]).then(res => {
   console.log('fulltime creat success !!!')
 })
-// for (let i = 0; i < fulltimedata.length; i++) {
-//   Fulltime.create({
-//     ...fulltimedata[1],
-//     item_id: utils.makeuid(),
-//     item_state: 0
-//   })
-// }
-
 module.exports = {
   Fulltime
 }

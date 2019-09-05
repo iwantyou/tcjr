@@ -10,21 +10,21 @@
   </div>
 </template>
 <script>
-import holder from "@/components/header/header";
-import foot from "@/components/footer/footer";
-import fixhearder from "@/components/fixheader/index";
+import holder from '@/components/header/header';
+import foot from '@/components/footer/footer';
+import fixhearder from '@/components/fixheader/index';
 export default {
-  name: "layout",
+  name: 'layout',
   components: {
     holder,
     foot,
     fixhearder
   },
-  data() {
+  data () {
     return {};
   },
   watch: {
-    $route(to, from) {
+    $route (to, from) {
       console.log(to.path, from.path);
     }
   }

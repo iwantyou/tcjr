@@ -14,12 +14,14 @@
     <div class="content">
       <el-row>
         <el-col :sm="8" :md="6" v-for="(item, index) in projects1" :key="index">
-          <div class="widge">
-            <div class="box">
-              <div>职位名称：</div>
-              <div>职位描述</div>
+          <router-link :to=" '/postdetail/' + item.item_id" tag="a">
+            <div class="widge">
+              <div class="box">
+                <div>职位名称：</div>
+                <div>职位描述</div>
+              </div>
             </div>
-          </div>
+          </router-link>
         </el-col>
       </el-row>
     </div>
@@ -37,20 +39,20 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Pagination } from "element-ui";
-import { getfulldata, getfullsort } from "@/axios/index";
+import Vue from 'vue';
+import { Pagination } from 'element-ui';
+import { getfulldata, getfullsort } from '@/axios/index';
 Vue.use(Pagination);
 
 export default {
-  name: "fullTime",
+  name: 'fullTime',
   components: {},
-  data() {
+  data () {
     return {
       cur: 0,
       nav: [
-        { sort: "发布时间", type: "item_public_time" },
-        { sort: "热度", type: "hot" }
+        { sort: '发布时间', type: 'item_public_time' },
+        { sort: '热度', type: 'hot' }
       ],
       projects1: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       pagedata: {
@@ -58,20 +60,21 @@ export default {
         page: 1,
         item_position_state: 1
       },
-      loadmore: "",
-      totalpage: "" // 总条目数
+      loadmore: '',
+      totalpage: '' // 总条目数
     };
   },
-  created() {
+  created () {
     this.getData();
   },
   methods: {
-    tab(index, sort) {
+    tab (index, sort) {
       this.cur = index;
     },
-    sort(index, sort) {
+    sort (index, sort) {
       this.cur = index;
       var feather = sort.type;
+      var pagedata = this.pagedata;
       getfullsort({ ...pagedata, feather }).then(res => {
         if (res === 0) {
           const { result, loadmore } = res.data;
@@ -81,12 +84,13 @@ export default {
         } else {
           this.$message({
             message: res.msg,
-            type: "warning"
+            type: 'warning'
           });
         }
       });
     },
-    getData() {
+    getData () {
+      var pagedata = this.pagedata;
       getfulldata(pagedata).then(res => {
         if (res === 0) {
           const { result, loadmore } = res.data;
@@ -96,12 +100,12 @@ export default {
         } else {
           this.$message({
             message: res.msg,
-            type: "warning"
+            type: 'warning'
           });
         }
       });
     },
-    handlecurrentchange(page) {
+    handlecurrentchange (page) {
       this.pagedata.page = page;
     }
   }

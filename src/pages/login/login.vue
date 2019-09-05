@@ -2,29 +2,40 @@
   <div class="login">
     <img src="../../assets/images/logo1.png" />
     <div class="login_box">
-      <h1>登录</h1>
-      <div style="margin-top:30px">
-        <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="loginform.username">
-          <i slot="prefix" class="el-input__icon el-icon-user-solid" style="font-size:18px"></i>
-        </el-input>
-      </div>
-      <div style="margin-top:30px">
-        <el-input placeholder="请输入密码" v-model="loginform.password" show-password>
-          <i slot="prefix" class="el-input__icon el-icon-unlock" style="font-size:18px"></i>
-        </el-input>
-      </div>
-      <div class="forget">
-        <a href>忘记密码？</a>
-      </div>
-      <el-button type="warning" class="login_btn" @click="login">登录</el-button>
+      <el-tabs v-model="name">
+        <el-tab-pane label="扫码登录" name="a">
+          <div class="qr">
+            <qrcode value="hello,qrcode" :options="{size:200}"></qrcode>
+            <div class="state">{{qrstatus}}</div>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="密码登录" name="b">
+          <div>
+            <!-- <h1>登录</h1> -->
+            <div style="margin-top:30px">
+              <el-input placeholder="请输入手机号码/邮箱/用户名" v-model="loginform.username">
+                <i slot="prefix" class="el-input__icon el-icon-user-solid" style="font-size:18px"></i>
+              </el-input>
+            </div>
+            <div style="margin-top:30px">
+              <el-input placeholder="请输入密码" v-model="loginform.password" show-password>
+                <i slot="prefix" class="el-input__icon el-icon-unlock" style="font-size:18px"></i>
+              </el-input>
+            </div>
+            <div class="forget">
+              <a href>忘记密码？</a>
+            </div>
+            <el-button type="warning" class="login_btn" @click="login">登录</el-button>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
     <div class="register">
       <span>还没有账号?</span>
       <router-link to="/register">
-        <span class="signup">免费注册{{testfn}}</span>
+        <span class="signup">免费注册</span>
       </router-link>
     </div>
-    <div class="footer"></div>
   </div>
 </template>
 <script>
@@ -42,14 +53,15 @@ export default {
       loginform: {
         username: null,
         password: null
-      }
+      },
+      name: 'a'
     };
   },
   computed: {
     ...mapState({
       login1: state => state.user.login
     }),
-    ...mapGetters(['testfn'])
+    ...mapGetters(['qrstatus'])
   },
   methods: {
     login () {
@@ -86,7 +98,13 @@ export default {
   filter: alpha(opacity=70);
   -moz-opacity: 0.7;
   opacity: 0.7;
-
+  .qr {
+    padding: 30px 0 15px 0;
+    text-align: center;
+    .state {
+      padding-top: 30px;
+    }
+  }
   img {
     display: block;
     position: absolute;
