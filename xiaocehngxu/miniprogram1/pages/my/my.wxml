@@ -1,0 +1,16 @@
+<!--pages/my/my.wxml-->
+<view class="wrap">
+<block wx:if="{{flag}}">
+<view class="wrap-btn">
+<view class="wrap-h">
+<button open-type="getUserInfo" bindgetuserinfo="getmsg">同意授权</button>
+</view>
+</view>
+</block>
+<block wx:else>
+<view class="wrap-my">
+<image class="img" src="{{userInfo.avatarUrl}}"></image>
+<view class="text-center">{{userInfo.nickName}}</view>
+</view>
+</block>
+</view>

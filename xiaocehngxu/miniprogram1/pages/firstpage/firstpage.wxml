@@ -1,0 +1,4 @@
+<!--pages/firstpage/firstpage.wxml-->
+<view class="header">
+<view class="p" style="max-height:400px">这是首页</view><view style="min-height:calc(100% - 50px);background:red;">实验</view>
+</view>
