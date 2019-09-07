@@ -33,20 +33,19 @@ function checkpw (password, salt, password2) {
  * date : now
  */
 function salt () {
-<<<<<<< HEAD
   return 's:'
-=======
-  let time = moment().valueOf()
-  return time.toString().substr(2, 5)
->>>>>>> 8a819cc0cdf6fea2686b4f8775d6db1bf11e29a5
 }
 /**
- * 默认昵称
+ * 文本颜色
+ * @param {*} str 字符串
  */
-function getname (mobile) {
-
+function textToColor (str) {
+  if (!str || str.length === 0) return false;
+  for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
+  for (var j = 0, color = '#'; j < 3; color += ('00' + ((hash >> j++ * 2) & 0xFF).toString(16)).slice(-2));
+  return color;
 }
-function getDate(){
+function getDate () {
   return Date.now()
 }
 module.exports = {
@@ -55,5 +54,5 @@ module.exports = {
   getpw,
   checkpw,
   salt,
-  getDate
+  textToColor
 }

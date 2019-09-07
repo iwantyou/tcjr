@@ -15,7 +15,10 @@ import 'moment/locale/zh-cn'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'nprogress/nprogress.css'
+import Vueqrcode from '@xkeshi/vue-qrcode'
+
 moment.locale('zh-cn');
+Vue.component('qrcode', Vueqrcode)
 Vue.config.productionTip = false
 Vue.filter('dateformat', (value) => {
   return moment(value).format('yyyy-mm-dd')

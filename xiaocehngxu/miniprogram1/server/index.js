@@ -1,0 +1,23 @@
+var express = require('express')
+var bodyparser = require('body-parser')
+var http = require('http')
+var router = require("./router/admin")(express.Router())
+var logger = require('morgan')
+var serveStatic = require('serve-static')
+var path = require('path')
+
+var app = express()
+var host = (process.env.host || '127.0.0.1')
+var port = (process.env.port || 9566)
+app.use(logger(':date[iso] :method :url :status :response-time ms - :req[content-length] - :res[content-length]'))
+app.use(function (req, res, next) {
+  console.log(`method：${req.method}`)
+  next()
+})
+app.use('/view', serveStatic(path.join(__dirname, '/view')))
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({ extended: false }))
+app.use(router)
+http.Server(app).listen(port, host, function () {
+  console.log(`此服务器监听在http:${host}:${port}`)
+})

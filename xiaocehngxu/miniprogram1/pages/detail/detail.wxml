@@ -1,0 +1,27 @@
+<!--pages/detail/detail.wxml-->
+<view class="contaier">
+<view class="header">
+<image src="{{ingd.imgurl}}" class="img"></image>
+<view class="p pd-l pd-t">页面{{ingd.index}}</view>
+<view class="box">
+<view class="active text-center middle p">
+<text class="dis-i  pd-tb-10">活动介绍</text>
+</view>
+<view class="pd-l pd-tb ">
+<view class="p item pos-r">
+<text class="cr-pink pd-l20 dis-b small">主办方</text>
+</view>
+<view class="p small cr-66 pd-l lh-14">招商银行郑州分行</view>
+</view>
+<view class="pd-l">
+<view class="p item pos-r">
+<text class="cr-pink pd-l20 dis-b small">活动规则</text>
+</view>
+<view class="lh-14 small cr-66 pd-lr">1.招商银行郑州分行招商银行郑州分行招商银行郑州分行招商银行郑州分行</view>
+<view class="lh-14 small cr-66 pd-lr ">2.招商银行郑州分行招商银行郑州分行招商银行郑州分行招商银行郑州分行</view>
+<view class="lh-14 small cr-66 pd-lr">3.招商银行郑州分行招商银行郑州分行招商银行郑州分行招商银行郑州分行</view>
+<view class="lh-14 small cr-66 pd-lr">4.招商银行郑州分行招商银行郑州分行招商银行郑州分行招商银行郑州分行</view>
+</view>
+</view>
+</view>
+</view>

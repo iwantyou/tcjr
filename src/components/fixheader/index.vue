@@ -27,12 +27,16 @@
           >
             <div class="menu-title" style=" margin: 6px 40px 6px 12px;
         font-size: 16px;">
-              岗位选择
-              <i class="el-icon-arrow-up" style="margin-left:5px;font-size:12px" v-if="cur"></i>
+              {{title.f}}
+              <i
+                class="el-icon-arrow-up"
+                style="margin-left:5px;font-size:12px"
+                v-if="cur"
+              ></i>
               <i class="el-icon-arrow-down" style="margin-left:5px;font-size:12px" v-else></i>
             </div>
             <ul class="menu-title-item">
-              <li v-for="(item, index) in Data" :key="index">{{item}}</li>
+              <li v-for="(item, index) in title.fData" :key="index">{{item}}</li>
             </ul>
           </li>
           <li
@@ -43,12 +47,14 @@
           >
             <div class="menu-title" style=" margin: 6px 40px 6px 12px;
         font-size: 16px;">
-              地区
-              <i class="el-icon-arrow-up" style="margin-left:5px;font-size:12px;" v-if="cur1"></i>
-              <i class="el-icon-arrow-down" style="margin-left:5px;font-size:12px;" v-else></i>
+              {{title.s}}
+              <i
+                :class="['el-icon-arrow-up',{'el-icon-arrow-down': !cur1}]"
+                style="margin-left:5px;font-size:12px;"
+              ></i>
             </div>
             <ul class="menu-title-item">
-              <li v-for="(item, index) in Data" :key="index">{{item}}</li>
+              <li v-for="(item, index) in title.sData" :key="index">{{item}}</li>
             </ul>
           </li>
         </ul>
@@ -72,8 +78,20 @@ export default {
       scrolltop: false
     };
   },
+  props: {
+    title: {
+      type: Object,
+      default: () => ({
+        f: '岗位选择',
+        s: '地区',
+        fData: [1, 2, 34, 4, 6, 7, 8],
+        sData: [0, 0, 0, 0, 0, 0]
+      })
+    }
+  },
   mounted () {
     this.mou();
+    console.log(111);
   },
   methods: {
     mou () {

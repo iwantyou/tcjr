@@ -24,7 +24,6 @@ const login = async function (req, res) {
   if (result.error) {
     res.json(RES_ERROR(rescode.ERROR_FORMAT))
     res.end()
-    return;
   }
   let admin = await db.User.findOne({ where: { username }, attributes: ['salt', 'password'] })
   console.log(admin)
