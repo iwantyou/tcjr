@@ -1,9 +1,0 @@
-{
-  "usingComponents": {},
-  "navigationBarBackgroundColor":"#FF00FF",
-  "navigationBarTextStyle":"white",
-  "navigationBarTitleText":"广场舞大赛",
-  "enablePullDownRefresh":false,
-  "backgroundTextStyle":"light",
-  "backgroundColor":"#ccc"
-}
