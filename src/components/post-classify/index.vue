@@ -42,60 +42,60 @@
 </template>
 <script>
 export default {
-  name: 'post_classify',
+  name: "post_classify",
   props: {
     postData: { type: Object }
   },
-  data () {
+  data() {
     return {
-      type: '',
+      type: "",
       left: {
-        post_title: '全职有保障',
-        des: '被骗有赔付',
-        classify: ['司机', '司机', '司机', '司机', '司机', '司机']
+        post_title: "全职有保障",
+        des: "被骗有赔付",
+        classify: ["司机", "司机", "司机", "司机", "司机", "司机"]
       },
       right: [
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         },
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         },
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         },
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         },
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         },
         {
-          title: '郑州富士康招工',
-          des: ['郑州', '经验不限', '来自拉勾网'],
-          name: '郑州富士康',
-          price: '8000-1000',
-          wdeg: ['保证', '直投']
+          title: "郑州富士康招工",
+          des: ["郑州", "经验不限", "来自拉勾网"],
+          name: "郑州富士康",
+          price: "8000-1000",
+          wdeg: ["保证", "直投"]
         }
       ]
     };
@@ -198,13 +198,13 @@ h1 {
   margin-bottom: 10px;
 }
 .right_price span:not(:nth-child(1)) {
-  font-size:12px;
+  font-size: 12px;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 0px 8px;
   margin-right: 5px;
   color: #000;
-  position:relative;
-  top:-2px;
+  position: relative;
+  top: -2px;
 }
 </style>
