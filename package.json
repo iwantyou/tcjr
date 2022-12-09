@@ -22,7 +22,7 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "element-ui": "^2.4.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
